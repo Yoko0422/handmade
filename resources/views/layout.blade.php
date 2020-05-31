@@ -1,32 +1,29 @@
 <!DOCTYPE html>
-<html lang="ja">
-
-<head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-
-	<title>@yield('title')</title>
-	<!-- Bootstrap -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-
-	<style>
-		body {
-			padding-top: 50px;
-			background-color: lightgray;
-		}
-
-	</style>
-</head>
-
+<html>
+    <head>
+        <meta charset='utf-8'>
+        <meta name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no'>
+        <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css' >
+        <title>Lunchmap</title>
+        <style> </style>
+    </head>
     <body>
-        <nav class='navbar navbar-expand-md navbar-dark bg-dark fixed-top'>
-            <a class='navbar-brand' href={{route('handmade')}}><h2>アプリケーション名</h2></a>
-            ||
-            <a class='navbar-brand' href={{route('parts.list')}}>パーツ一覧</a>
-            |
-            <a class='navbar-brand' href={{route('spends.list')}}>パーツ支出記録</a>
-        </nav>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href={{ route('app.index')}}><h1>アプリケーション名</h1></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <div class="navbar-nav">
+      <a class="nav-item nav-link active" href={{ route('parts.list')>パーツ一覧 <span class="sr-only">(current)</span></a>
+      <a class="nav-item nav-link" href="#">パーツ登録</a>
+      <a class="nav-item nav-link" href="#">パーツ支出記録</a>
+      <a class="nav-item nav-link disabled" href="#">パーツ支出登録</a>
+    </div>
+  </div>
+</nav>
+
         <div class='container'>
             @yield('content')
         </div>
