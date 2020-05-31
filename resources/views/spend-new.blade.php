@@ -1,8 +1,11 @@
 @extends('layout')
 
 @section('content')
-    <h2>パーツ使用/購入記録</h2>
-    <form action="part" method="post">
+<div class="main">
+    
+<h2>パーツ使用/購入記録</h2>
+
+<form action="part" method="post">
 <div class="form-group">
 <label for="comment_1">パーツ名</label>
 <input type="text" class="form-control" name="name">
@@ -18,5 +21,5 @@
 <button type="submit">パーツ登録</button>
 </form>
     
- 
+</div>
 @endsection

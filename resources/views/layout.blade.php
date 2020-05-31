@@ -4,8 +4,8 @@
         <meta charset='utf-8'>
         <meta name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no'>
         <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css' >
-        <title>Lunchmap</title>
-        <style> </style>
+        <title>@yield('title')</title>
+        <style>.main{ padding-top: 50px;} </style>
     </head>
     <body>
 
@@ -16,10 +16,12 @@
   </button>
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
     <div class="navbar-nav">
-      <a class="nav-item nav-link active" href={{ route('parts.list')>パーツ一覧 <span class="sr-only">(current)</span></a>
-      <a class="nav-item nav-link" href="#">パーツ登録</a>
-      <a class="nav-item nav-link" href="#">パーツ支出記録</a>
-      <a class="nav-item nav-link disabled" href="#">パーツ支出登録</a>
+      <a class="nav-item nav-link active" href={{ route('parts.list') }}>パーツ一覧 <span class="sr-only">(current)</span></a>
+      _
+      <a class="nav-item nav-link disactive" href={{ route('parts.new') }}>パーツ登録</a>
+      <a class="nav-item nav-link active" href={{ route('spends.list') }}>パーツ支出記録</a>
+      _
+      <a class="nav-item nav-link disactive" href={{ route('spends.new') }}>パーツ支出登録</a>
     </div>
   </div>
 </nav>

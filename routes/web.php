@@ -16,5 +16,5 @@ Auth::routes();
 Route::get('/', 'PartController@index')->name('app.index'); //homeページ
 Route::get('/parts', 'PartController@parts')->name('parts.list'); //パーツ一覧ページ
 Route::get('/spends', 'PartController@spends')->name('spends.list'); //パーツ支出一覧ページ
-Route::post('/newp', 'PartController@pcreate')->name('parts.new'); //パーツ登録フォーム
-Route::post('/news', 'PartController@screate')->name('spends.new'); //パーツ支出記録フォーム
+Route::get('/newp', 'PartController@pcreate')->name('parts.new'); //パーツ登録フォーム
+Route::get('/news', 'PartController@screate')->name('spends.new'); //パーツ支出記録フォーム

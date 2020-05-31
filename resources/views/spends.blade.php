@@ -3,8 +3,7 @@
 @section('title', 'パーツ支出記録')
 
 @section('content')
-
-    <body>
+<div class="main">
         <h2>パーツ支出記録</h2>
         <p></p>
 <table>
@@ -23,6 +22,5 @@
        @endforeach
    </tr>
 </table>
-    </body>
-
+ </div>
 @endsection

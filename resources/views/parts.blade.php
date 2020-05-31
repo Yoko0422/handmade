@@ -3,8 +3,8 @@
 @section('title', 'パーツ一覧')
 
 @section('content')
-
-<body>
+<div class="main">
+    
     <h2>パーツ一覧</h2>
     <p></p>
 <table>
@@ -24,6 +24,53 @@
        @endforeach
    </tr>
 </table>
-    </body>
+
+@foreach ($parts as $part)
+<div class="row">
+
+    <div class="col-sm-1">
+        No.{{ $part->id }} //ID
+    </div>
+    <div class="col-sm-4">
+        <strong>{{ $part->name }}</strong> //パーツ名
+    </div>
+    <div class="col-sm-2">
+        ￥{{ $part->price }}-　//価格
+        </div>
+    <div class="col-sm-2">
+       {{ $part->value }} {{ $part->unit }}　//個数　単位
+    </div>
+    </div>
+
+<div class="row">
+    <div class="col-sm-1">
+        
+    </div>
+    <div class="col-sm-4">
+        <strong></strong>
+    </div>
+    <div class="col-sm-2">
+       単価：{{ $part->bit }}＠{{ $part->unit }} //単価＠単位
+    </div>
+    <div class="col-sm-2">
+        在庫数：{{ $part->stock }}　//在庫数
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-1">
+        
+    </div>
+    <div class="col-sm-1">
+        <strong>備考：</strong>
+    </div>
+    <div class="col-sm-7">
+        {{ $part->other }}　//備考欄
+    </div>
     
+</div>
+@endforeach
+
+
+</div>
 @endsection
