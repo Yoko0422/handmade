@@ -40,4 +40,17 @@ class PartController extends Controller
         $parts = Part::all()->pluck('name', 'id');
         return view('spend-new', ['spend' => $spend, 'parts' => $parts]);
     }
+    
+    public function pstore(Request $request){
+        $part = new Part;
+        $part->name = request('name');
+        $part->price = request('price');
+        $part->value = request('value');
+        $part->bit = number_format((request('price') / request('value')), 1);
+        $part->unit = request('unit');
+        $part->shop = request('shop');
+        $part->other = request('pther');
+        $part->save();
+        return redirect()->route('parts.list',['id'=> $part->id]);
+    }
 }

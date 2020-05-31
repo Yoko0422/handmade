@@ -5,7 +5,7 @@
         <meta name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no'>
         <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css' >
         <title>@yield('title')</title>
-        <style>.main{ padding-top: 50px;} </style>
+        <style>.main{ padding-top: 60px;} </style>
     </head>
     <body>
 
