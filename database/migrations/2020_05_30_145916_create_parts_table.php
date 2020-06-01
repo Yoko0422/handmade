@@ -19,8 +19,6 @@ class CreatePartsTable extends Migration
             $table->integer('price');  //価格
             $table->integer('value'); //個数
             $table->string('unit'); //単位
-            $table->integer('bit'); //単価
-            $table->integer('stock'); //在庫数
             $table->string('shop'); //購入店名
             $table->string('other'); //備考
             $table->timestamps();

@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Spend extends Model
 {
- public function category()
+ public function part()
     {
         return $this->belongsTo('App\Part');
     }
