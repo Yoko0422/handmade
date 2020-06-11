@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 use App\Part;
 use App\Spend;
@@ -27,6 +28,7 @@ class SpendController extends Controller
         $spend->name = request('name');
         $spend->value = request('value');
         $spend->date = request('value');
+        $spend->which = request('which');
         $spend->purpose = request('unit');
         $spend->other = request('other');
         $spend->save();

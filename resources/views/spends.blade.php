@@ -6,21 +6,29 @@
 <div class="main">
         <h2>パーツ支出記録</h2>
         <p></p>
-<table>
+        
+@foreach ($spends as $spend)
+<table class="table">
     <tr>
-        <th>番号</th><th>パーツ名</th><th>使用/購入</th><th>個数</th><th>日付</th><th>用途</th><th>備考</th>
+        <td>{{$spend->id}}</td>
+        <td>{{$spend->name}}</td>
+        <td>{{$spend->date}}</td>
+        <td>{{$spend->which}}</td>
+        <td>{{$spend->value}}</td>
+        <td>{{$spend->purpose</td>
     </tr>
     <tr>
-        @foreach ($spends as $spend)
-        <td>{{ $spend->id }}</td>,
-        <td>{{ $spend->part->name }}</td>,
-        <td>{{ $spend->which }}</td>,
-        <td>{{ $spend->value }}</td>,
-        <td>{{ $spend->date }}</td>,
-        <td>{{ $spend->purpose }}</td>,
-        <td>{{ $spend->other }}</td> 
-       @endforeach
-   </tr>
+        <td> </td>
+        <td colspam="4">備考：</td>
+       <td>
+        編集
+       ｜
+        削除
+        </td>
+    </tr>
 </table>
+<p>　</p>
+@endforeach
+
  </div>
 @endsection

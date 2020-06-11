@@ -15,12 +15,14 @@ class CreateSpendsTable extends Migration
     {
         Schema::create('spends', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('parts_name'); //パーツ名
+            $table->string('name');
             $table->string('which'); //使用か購入か
             $table->date('date'); //購入/使用日
             $table->integer('value'); //使用/購入数
             $table->string('purpose'); //用途
             $table->string('other'); //備考
+            $table->string('shop'); //購入店
+            $table->integer('part_id');
             $table->timestamps();
         });
     }
