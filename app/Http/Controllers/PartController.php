@@ -14,10 +14,16 @@ class PartController extends Controller
         return view('index');
     }
     
-    public function parts()
+    public function parts(Request $request)
     {
-        $parts = Part::all();
-        return view('parts', ['parts' => $parts]);
+        if($request->filled('keyword')){
+            $keyword = $request->input('keyword');
+            $parts = Part::where('name', 'like', '%'.$keyword.'%')->get();
+        } else {
+            $parts = Part::all();
+            $parts = Part::paginate(10);
+            return view('parts', ['parts' => $parts]);
+        }
     }
     
      public function create()
@@ -34,12 +40,12 @@ class PartController extends Controller
         'value' => 'required',
         ],
         [
-        'required' => '・:attribute を入力してください',
+        'required' => '・:attribute は必須項目です',
         ],
         [
         'name' => 'パーツ名',
-        'price' => 'パーツ価格',
-        'value' => 'パーツ内容量',
+        'price' => '価格',
+        'value' => '内容量',
         ]);
         
         $part = new Part;
@@ -55,28 +61,41 @@ class PartController extends Controller
         return redirect()->route('parts.list');
     } 
     
-    public function edit(Request $request){
-      // News Modelからデータを取得する
+    public function edit(Request $request, $id){
       $part = Part::find($request->id);
-    
-      return view('parts', ['part_form' => $part]);
+      return view('part-edit', ['part' => $part]);
     }
     
     
-    public function update(Request $request)
+    public function update(Request $request, $id, Part $part)
     {
-      // Validationをかける
-      $this->validate($request, Part::$rules);
-      // News Modelからデータを取得する
-      $news = Part::find($request->id);
-      // 送信されてきたフォームデータを格納する
-      $news_form = $request->all();
-      unset($news_form['_token']);
+     //バリデーション
+        $request->validate([
+        'name' => 'required',
+        'price' => 'required',
+        'value' => 'required',
+        ],
+        [
+        'required' => '・:attribute を入力してください',
+        ],
+        [
+        'name' => 'パーツ名',
+        'price' => '価格',
+        'value' => '内容量',
+        ]);
     
       // 該当するデータを上書きして保存する
-      $news->fill($news_form)->save();
-    
-      return redirect('/parts');
+        $part = Part::find($request->id);
+        $part->genru = request('genru');
+        $part->name = request('name');
+        $part->price = request('price');
+        $part->value = request('value');
+        $part->bit = $part->price / $part->value;
+        $part->unit = request('unit');
+        $part->shop = request('shop');
+        $part->other = request('other');
+        $part->save();
+        return redirect()->route('parts.list', ['id' => $part->id]);
     }
     
      public function delete(Request $request)

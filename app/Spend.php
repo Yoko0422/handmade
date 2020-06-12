@@ -8,6 +8,6 @@ class Spend extends Model
 {
  public function part()
     {
-        return $this->belongsTo('App\Part');
+        return $this->belongsTo('App\Part'); //Partモデルに所属
     }
 }

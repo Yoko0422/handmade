@@ -15,7 +15,6 @@
     </div>
     <div class="col-sm-3">
     <select class="custom-select my-1 mr-sm-2" name="genru" value="{{ old('genru') }}">
-        <option selected>－SELECT-</option>
         <option value='布'>布</option>
         <option value='メタル'>メタル</option>
       </select>
@@ -52,7 +51,6 @@
 <div class="col-sm-1">　　単位</div>
     <div class="col-sm-2">
     <select class="custom-select my-1 mr-sm-2" name="unit">
-        <option selected>－SELECT-</option>
         <option value='個'>個</option>
         <option value='本'>本</option>
         <option value='枚'>枚</option>
