@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Spend;
 use App\Part;
+use App\Stock;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -27,30 +28,35 @@ class SpendController extends Controller
      public function store(Request $request){
         //バリデーション
         $request->validate([
-        'name' => 'required',
-        'price' => 'required',
-        'value' => 'required',
+        'amount' => 'required',
         ],
         [
         'required' => '・:attribute は必須項目です',
         ],
         [
-        'name' => 'パーツ名',
-        'price' => '価格',
-        'value' => '内容量',
+        'amount' => '内容量',
         ]);
         
         $spend = new Spend;
-        $spend->genru = request('genru');
-        $spend->name = request('name');
-        $spend->price = request('price');
-        $spend->value = request('value');
-        $spend->unit = request('unit');
+        $spend->date = request('date');
+        $spend->amount = request('amount');
+        $spend->which = request('which');
         $spend->shop = request('shop');
+        $spend->purpose = request('purpose');
         $spend->other = request('other');
+        $spend->part_id = request('array_values(parts_id)');
         $spend->save();
+        $stock = Stock::where('part_id', $spend->part_id)->first();
+        if($spend->which == "購入"){ $stock->stock += $spend->amount;}
+        else{$stock->stock -= $spend->amount;}
+        $stock->update();
         return redirect()->route('spends.list');
     } 
+    
+    
+    
+    
+    
     
     public function edit(Request $request, $id){
       $part = Spend::find($request->id);
@@ -62,7 +68,6 @@ class SpendController extends Controller
     {
      //バリデーション
         $request->validate([
-        'name' => 'required',
         'price' => 'required',
         'value' => 'required',
         ],
@@ -70,7 +75,6 @@ class SpendController extends Controller
         'required' => '・:attribute を入力してください',
         ],
         [
-        'name' => 'パーツ名',
         'price' => '価格',
         'value' => '内容量',
         ]);

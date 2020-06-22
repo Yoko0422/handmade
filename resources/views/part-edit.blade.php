@@ -12,7 +12,7 @@
     <label>分類</label>
     </div>
     <div class="col-sm-3">
-    <select class="custom-select my-1 mr-sm-2" name="genru" value="{{ old('genru') }}">
+    <select class="custom-select my-1 mr-sm-2" name="genru" value="{{ $part->genru }}">
         <option value='布'>布</option>
         <option value='メタル'>メタル</option>
       </select>
@@ -27,7 +27,7 @@
     <label>パーツ名</label>
     </div>
     <div class="col-sm-8">
-    <input type="text" class="form-control" name="name" value="{{ old('name') }}">
+    <input type="text" class="form-control" name="name" value="{{ $part->name }}">
     </div>
 </div>
 
@@ -38,13 +38,13 @@
     <label>価格</label>
     </div>
     <div class="col-sm-2">
-        <input type="number" class="form-control" name="price"  value="{{ old('price') }}">
+        <input type="number" class="form-control" name="price"  value="{{ $part->price }}">
     </div>
     <div class="col-sm-1">
     <label>　内容量</label>
     </div>
     <div class="col-sm-2">
-     <input type="number" class="form-control" name="value" value="{{ old('value') }}">
+     <input type="number" class="form-control" name="value" value="{{ $part->value }}">
     </div>
 <div class="col-sm-1">　　単位</div>
     <div class="col-sm-2">
@@ -76,7 +76,7 @@
 <label>備考</label>
 </div>
 <div class="col-sm-8">
-<textarea class="form-control" name="other" rows="3" value="{{ old('other') }}"></textarea>
+<textarea class="form-control" name="other" rows="3" value="{{ $part->other }}"></textarea>
 </div>
 </div>
 <p>　</p>

@@ -23,17 +23,27 @@
 
 <div class="row">
     <div class="col-sm-1">
-    <label>パーツ名</label>
+     {{ Form::label('name', '購入/消費') }}
     </div>
-    <div class="col-sm-4">
-    <select class="custom-select my-1 mr-sm-2" name="genru" value="{{ old('genru') }}">
-         @foreach ($parts as $part)
-        <option>{{ $part }}</option>
-        @endforeach
-      </select>
-    </div>
-    <div class="col-sm-4">
+    <div class="col-sm-6">
+        {{ Form::radio('which', '購入', false, ['id' => 'radio-one', 'class' => 'form-check-input']) }}購入
         
+        {{ Form::radio('which', '消費', false, ['id' => 'radio-two', 'class' => 'form-check-input']) }}消費
+    </div>
+    <div class="col-sm-2">
+    </div>
+</div>
+
+<p>　</p>
+
+<div class="row">
+    <div class="col-sm-1">
+     {{ Form::label('name', 'パーツ名') }}
+    </div>
+    <div class="col-sm-4">
+    {{ Form::select('array_values(parts_id)', $parts) }}
+    </div>
+    <div class="col-sm-4">
     </div>
 </div>
 
@@ -44,26 +54,17 @@
     <label>価格</label>
     </div>
     <div class="col-sm-2">
-        <input type="number" class="form-control" name="price"  value="{{ old('price') }}">
+       
     </div>
     <div class="col-sm-1">
-    <label>　内容量</label>
+    <label>　個数</label>
     </div>
     <div class="col-sm-2">
-     <input type="number" class="form-control" name="value" value="{{ old('value') }}">
+     <input type="number" class="form-control" name="amount" value="{{ old('amount') }}">
     </div>
 <div class="col-sm-1">　　単位</div>
     <div class="col-sm-2">
-    <select class="custom-select my-1 mr-sm-2" name="unit">
-        <option value='個'>個</option>
-        <option value='本'>本</option>
-        <option value='枚'>枚</option>
-        <option value='cm'>cm</option>
-        <option value='m'>m</option>
-        <option value='g'>g</option>
-        <option value='kg'>kg</option>
-        <option value='cc'>cc</option>
-      </select>
+    
       </div>
 </div>
 
@@ -71,10 +72,21 @@
 
 <div class="row">
     <div class="col-sm-1">
-    <label>販売店</label>
+    <label>購入店</label>
     </div>
     <div class="col-sm-8">
     <input type="text" class="form-control" name="shop">
+    </div>
+</div>
+
+<p>　</p>
+
+<div class="row">
+    <div class="col-sm-1">
+    <label>目的</label>
+    </div>
+    <div class="col-sm-8">
+    <input type="text" class="form-control" name="purpose">
     </div>
 </div>
 
@@ -91,6 +103,16 @@
 
 <p>　</p>
 {{ csrf_field() }}
+<div class="row">
+    <div class="col-sm-7">
+        @foreach ($errors->all() as $error)
+        {{ $error }}<br>
+        @endforeach
+    </div>
+    <div class="col-sm-2">
+    <button type="submit">パーツ登録</button>
+    </div>
+</div>
 </form>
 
 </div>

@@ -3,12 +3,6 @@
 @section('title', 'パーツ一覧')
 
 @section('content')
-<?php
-
-$genrus = \App\Part::pluck('genru', 'id');
-
-?>
-
 <div class="main">
     
     <h2>パーツ一覧</h2>
@@ -19,12 +13,7 @@ $genrus = \App\Part::pluck('genru', 'id');
             {!! $parts->render() !!}
         </div>
         <div class="col-sm-3">
-           <select class="custom-select my-1 mr-sm-2" name="genru" value="{{ old('genru') }}">
-            <option selected value=''>―パーツジャンル―</option>
-           @foreach($genrus as $genru)
-               <option><?= $genru ?></option>
-           @endforeach
-            </select>
+         
         </div>
     </div>
       
@@ -35,9 +24,9 @@ $genrus = \App\Part::pluck('genru', 'id');
     
     <tr>
         <td width="500">{{ $part->genru }}<br><strong><font size="5">{{ $part->name }}</font></strong></td>
-        <td width="120"><strong>価格：</strong><br>￥{{ $part->price }} @ {{ $part->value }} {{ $part->unit }}</td>
-        <td width="120"><strong>単価：</strong><br>￥{{ $part->bit }} @ {{ $part->unit}}</td> <!--価格＠個数-->
-        <td width="120"><strong>在庫数：</strong><br> {{ $part->unit }}</td>
+        <td width="150"><strong>価格：</strong><br>￥{{ $part->price }} @ {{ $part->value }} {{ $part->unit }}</td>
+        <td width="120"><strong>単価：</strong><br>￥{{ number_format($part->bit, 1) }} @ {{ $part->unit}}</td> <!--価格＠個数-->
+        <td width="120"><strong>在庫数：</strong><br>{{ $part->stock->stock }} {{ $part->unit }}</td>
         <td width="200" colspan="2"><strong>店名：</strong><br>{{ $part->shop }}</td> <!--単価-->
     </tr>
     
@@ -58,12 +47,7 @@ $genrus = \App\Part::pluck('genru', 'id');
             {!! $parts->render() !!}
         </div>
         <div class="col-sm-3">
-          <select class="custom-select my-1 mr-sm-2" name="genru" value="{{ old('genru') }}">
-            <option selected value=''>―パーツジャンル―</option>
-           @foreach($genrus as $genru)
-           <option><?= $genru ?></option>
-           @endforeach
-          </select>
+         
         </div>
     </div>
 

@@ -14,7 +14,7 @@
             <td>{{ $spend->part->name }}</td>
             <td>{{ $spend->date }}</td>
             <td>{{ $spend->which }}</td>
-            <td>{{ $spend->value }}</td>
+            <td>{{ $spend->amount }}</td>
             <td>{{ $spend->purpose }}</td>
         </tr>
         <tr>

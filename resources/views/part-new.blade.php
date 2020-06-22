@@ -66,7 +66,7 @@
 <p>　</p>
 <div class="row">
 <div class="col-sm-1">
-<label>販売店</label>
+<label>店名</label>
 </div>
 <div class="col-sm-8">
 <input type="text" class="form-control" name="shop">

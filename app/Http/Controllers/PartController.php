@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Part;
+use App\Genru;
+use App\Stock;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -16,14 +18,9 @@ class PartController extends Controller
     
     public function parts(Request $request)
     {
-        if($request->filled('keyword')){
-            $keyword = $request->input('keyword');
-            $parts = Part::where('name', 'like', '%'.$keyword.'%')->get();
-        } else {
             $parts = Part::all();
             $parts = Part::paginate(10);
             return view('parts', ['parts' => $parts]);
-        }
     }
     
      public function create()
@@ -53,15 +50,19 @@ class PartController extends Controller
         $part->name = request('name');
         $part->price = request('price');
         $part->value = request('value');
-        $part->bit = $part->price / $part->value;
+        $part->bit = number_format($part->price / $part->value, 2);
         $part->unit = request('unit');
         $part->shop = request('shop');
         $part->other = request('other');
         $part->save();
+        $stock = new Stock;
+        $stock->part_id = $part->id;
+        $stock->stock = 0;
+        $stock->save();
         return redirect()->route('parts.list');
     } 
     
-    public function edit(Request $request, $id){
+    public function edit(Request $request){
       $part = Part::find($request->id);
       return view('part-edit', ['part' => $part]);
     }
@@ -98,10 +99,10 @@ class PartController extends Controller
         return redirect()->route('parts.list', ['id' => $part->id]);
     }
     
-     public function delete(Request $request)
+     public function delete($id)
     {
       // 該当するNews Modelを取得
-      $part = Part::find($request->id);
+      $part = Part::find($id);
       // 削除する
       $part->delete();
       return redirect('/parts');
