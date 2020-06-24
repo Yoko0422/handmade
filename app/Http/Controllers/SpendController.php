@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Spend;
 use App\Part;
+use App\Genru;
 use App\Stock;
 
 use Illuminate\Http\Request;
@@ -21,20 +22,26 @@ class SpendController extends Controller
      public function create()
     {
         $spend = new Spend;
-        $parts = Part::all()->pluck('name', 'id');
-        return view('spend-new', ['spend' => $spend, 'parts' => $parts]);
+        $array_part = Part::all()->pluck('name', 'id');
+        $part = Part::all();
+        $genru = new Genru;
+        return view('spend-new', ['spend' => $spend, 'array_part' => $array_part, 'part' => $part, 'genru' => $genru]);
     }
     
      public function store(Request $request){
         //バリデーション
         $request->validate([
-        'amount' => 'required',
+        'date' => 'required',
+        'which' => 'required',
+        'amount' => 'required'
         ],
         [
         'required' => '・:attribute は必須項目です',
         ],
         [
-        'amount' => '内容量',
+        'date' => '日付',
+        'which' => '購入/消費',
+        'amount' => '個数',
         ]);
         
         $spend = new Spend;
@@ -55,9 +62,6 @@ class SpendController extends Controller
     
     
     
-    
-    
-    
     public function edit(Request $request, $id){
       $part = Spend::find($request->id);
       return view('part-edit', ['part' => $part]);
@@ -68,14 +72,14 @@ class SpendController extends Controller
     {
      //バリデーション
         $request->validate([
-        'price' => 'required',
+        'which' => 'required',
         'value' => 'required',
         ],
         [
         'required' => '・:attribute を入力してください',
         ],
         [
-        'price' => '価格',
+        'price' => '購入/消費',
         'value' => '内容量',
         ]);
     

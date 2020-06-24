@@ -8,18 +8,15 @@
         <p></p>
          {!! $spends->render() !!}
     @foreach ($spends as $spend)
-    <table class="table" border=1>
+    <table class="table">
         <tr>
-            <td>{{ $spend->id }}</td>
-            <td>{{ $spend->part->name }}</td>
-            <td>{{ $spend->date }}</td>
-            <td>{{ $spend->which }}</td>
-            <td>{{ $spend->amount }}</td>
-            <td>{{ $spend->purpose }}</td>
+            <td rowspan="2" width="150"><strong>{{ $spend->date }}</strong></td>
+            <td width="300">{{$spend->part->genru }}<br><strong>{{ $spend->part->name }}</strong></td>
+            <td><strong>{{ $spend->which }}:</strong>{{$spend->purpose}}</td>
+            <td width="120">{{ $spend->amount }}{{$spend->part->unit}}</td>
         </tr>
         <tr>
-            <td> </td>
-            <td colspam="4">備考：</td>
+            <td colspan="2"><strong>備考：</strong>{{$spend->other}}</td>
            <td>
             編集
            ｜
@@ -27,6 +24,7 @@
             </td>
         </tr>
     </table>
+    <hr>
     <p>　</p>
     @endforeach
  {!! $spends->render() !!}

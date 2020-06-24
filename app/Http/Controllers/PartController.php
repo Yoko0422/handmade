@@ -20,18 +20,22 @@ class PartController extends Controller
     {
             $parts = Part::all();
             $parts = Part::paginate(10);
+            $genrus = Genru::all();
             return view('parts', ['parts' => $parts]);
     }
     
      public function create()
     {
         $part = new Part;
-        return view('part-new', ['part' => $part]);
+        $array_genru = Genru::all()->pluck('name', 'id');
+        $genrus = Genru::all();
+        return view('part-new', ['part' => $part, 'array_genru' => $array_genru, 'genrus' => $genrus]);
     }
     
     public function store(Request $request){
         //バリデーション
         $request->validate([
+        'genru' => 'required',
         'name' => 'required',
         'price' => 'required',
         'value' => 'required',
@@ -40,20 +44,27 @@ class PartController extends Controller
         'required' => '・:attribute は必須項目です',
         ],
         [
+        'genru' => '分類',
         'name' => 'パーツ名',
         'price' => '価格',
         'value' => '内容量',
         ]);
         
+        $genru = Genru::where('name', request('genru'))->first();
+        if(empty($genru)){
+            $genru = new Genru;
+            $genru->name = request('genru');
+            $genru->save();
+        }
         $part = new Part;
-        $part->genru = request('genru');
         $part->name = request('name');
         $part->price = request('price');
         $part->value = request('value');
-        $part->bit = number_format($part->price / $part->value, 2);
+        $part->bit = $part->price / $part->value;
         $part->unit = request('unit');
         $part->shop = request('shop');
         $part->other = request('other');
+        $part->genru_id = $genru->id;
         $part->save();
         $stock = new Stock;
         $stock->part_id = $part->id;

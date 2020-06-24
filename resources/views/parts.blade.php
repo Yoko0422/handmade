@@ -23,7 +23,7 @@
 <table class="table">
     
     <tr>
-        <td width="500">{{ $part->genru }}<br><strong><font size="5">{{ $part->name }}</font></strong></td>
+        <td width="500">{{$part->genru->name }}<br><strong><font size="5">{{ $part->name }}</font></strong></td>
         <td width="150"><strong>価格：</strong><br>￥{{ $part->price }} @ {{ $part->value }} {{ $part->unit }}</td>
         <td width="120"><strong>単価：</strong><br>￥{{ number_format($part->bit, 1) }} @ {{ $part->unit}}</td> <!--価格＠個数-->
         <td width="120"><strong>在庫数：</strong><br>{{ $part->stock->stock }} {{ $part->unit }}</td>
@@ -37,6 +37,7 @@
     </tr>
     
 </table>
+<hr>
 
 <p>　</p>
 

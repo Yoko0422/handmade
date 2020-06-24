@@ -10,4 +10,9 @@ class Spend extends Model
     {
         return $this->belongsTo('App\Part'); //Partモデルに所属
     }
+
+    public function genru()
+    {
+        return $this->belongsTo('App\Genru'); //Partモデルに所属
+    }
 }

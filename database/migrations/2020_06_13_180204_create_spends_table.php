@@ -22,6 +22,7 @@ class CreateSpendsTable extends Migration
             $table->string('shop')->nullable()->default(null);
             $table->string('other')->nullable()->default(null);
             $table->integer('part_id');
+            $table->integer('genru_id');
             $table->timestamps();
         });
     }

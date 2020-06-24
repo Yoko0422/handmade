@@ -15,7 +15,6 @@ class CreatePartsTable extends Migration
     {
         Schema::create('parts', function (Blueprint $table) {
             $table->bigIncrements('id'); //パーツID
-            $table->string('genru'); //パーツジャンル
             $table->string('name'); //パーツ名
             $table->integer('price'); //価格
             $table->integer('value'); //個数
@@ -23,6 +22,7 @@ class CreatePartsTable extends Migration
             $table->float('bit'); //単価
             $table->string('shop')->nullable()->default(null);
             $table->text('other')->nullable()->default(null);
+            $table->integer('genru_id');
             $table->timestamps();
         });
     }

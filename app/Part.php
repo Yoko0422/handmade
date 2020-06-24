@@ -15,4 +15,9 @@ class Part extends Model
     {
           return $this->hasOne('App\Stock'); //Stockモデルに所属
     }
+    
+    public function genru()
+    {
+          return $this->belongsTo('App\Genru'); //Genruモデルに所属
+    }
 }

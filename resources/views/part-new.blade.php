@@ -9,18 +9,30 @@
 <p>　</p>
 <form action="{{ action('PartController@store') }}" method="post" enctype="multipart/form-data">
 
+
+
+
+
 <div class="row">
     <div class="col-sm-1">
     <label>分類</label>
     </div>
-    <div class="col-sm-3">
-    <select class="custom-select my-1 mr-sm-2" name="genru" value="{{ old('genru') }}">
-        <option value='布'>布</option>
-        <option value='メタル'>メタル</option>
-      </select>
+    <div class="col-sm-5">
+           <input type="text" name="genru" list="genrus" placeholder="テキスト入力/ダブルクリック" autocomplete="off" value="{{ old('genru') }}">
+            <datalist id="genrus">
+            <select name="genru_name">
+            @foreach($genrus as $genru)
+            <option value="{{$genru->name}}">{{$genru->name}}</option>
+            @endforeach
+            </select>
+            </datalist>
     </div>
-    <div class="col-sm-5"></div>
+    <div class="col-sm-3">
+    </div>
 </div>
+
+
+
 
 <p>　</p>
 
