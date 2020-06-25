@@ -9,6 +9,7 @@
 <p>　</p>
 
 <form action="{{ action('SpendController@store') }}" method="post" enctype="multipart/form-data">
+{{ csrf_field() }}
 
 <div class="row">
     <div class="col-sm-2">
@@ -42,34 +43,15 @@
     <label>分類</label>
     </div>
     <div class="col-sm-8">
-     <select class="select">
-      <option>全て</option>
-      //
-    </select>
-<script>
-    $('.select').on('change', function(){
-  // テキストを取得(例：北海道)
-  var pname = $(this).children(':selected').text();
-
-  $('.pname').each(function(){
-    // 全て非表示にする(初期化)
-    $(this).addClass('hide');
-
-    // '全て'が選択されていれば
-    if(pname == '全て'){
-      // 表示する
-      $(this).removeClass('hide');
-
-    // テキスト(例：北海道)が一致していれば
-    }else if($(this).html().match(pname)){
-      // 表示する
-      $(this).removeClass('hide');
-    }
-  });
-});
-</script>
+        <select name="genru_name" id="select_g">
+            <option>全て</option>
+            @foreach($genrus as $genru)
+            <option value="{{$genru->name}}">{{$genru->name}}</option>
+            @endforeach
+            </select>
     </div>
 </div>
+
 
 <p>　</p>
 
@@ -78,7 +60,9 @@
      {{ Form::label('name', 'パーツ名') }}
     </div>
     <div class="col-sm-4">
-    {{ Form::select('array_values(part_id)', $array_part, ['class' => 'pname'])}}
+        @if($genru->id === $part->genru_id)
+        {{Form::select('array_values(part_id)', $array_part, ['class' => 'g'.$genru->name, 'id' => 'select_p'])}}
+       @endif
     </div>
     <div class="col-sm-4">
     </div>
@@ -92,17 +76,17 @@
     </div>
     <div class="col-sm-2">
        <script>
-       $(function(){
-           $('select').change(function() {
-              const part = @json($part);
-              var extraction_val = $('select').val();
-              console.log(part[extraction_val]);
-                if(extraction_val == 'part_id') {
-                    $('part_id').css('display', 'block');
-                }
-                 console.log (part);
-           });
-        });
+           $(function(){
+               $('select').change(function() {
+                  const part = @json($part);
+                  var extraction_val = $('select').val();
+                  console.log(part[extraction_val]);
+                    if(extraction_val == 'part_id') {
+                        $('part_id').css('display', 'block');
+                    }
+                     console.log (part);
+               });
+            });
        </script>
     </div>
     <div class="col-sm-1">
@@ -151,7 +135,7 @@
 </div>
 
 <p>　</p>
-{{ csrf_field() }}
+
 <div class="row">
     <div class="col-sm-7">
         @foreach ($errors->all() as $error)
@@ -159,7 +143,10 @@
         @endforeach
     </div>
     <div class="col-sm-2">
-    <button type="submit">パーツ登録</button>
+        <div class="btn-group" role="group" aria-label="Basic example">
+            <button type="reset" class="btn btn-outline-dark">リセット</button>
+            <button type="submit" class="btn btn-outline-dark">登録</button>
+        </div>
     </div>
 </div>
 </form>

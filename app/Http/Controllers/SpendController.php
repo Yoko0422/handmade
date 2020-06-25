@@ -24,8 +24,9 @@ class SpendController extends Controller
         $spend = new Spend;
         $array_part = Part::all()->pluck('name', 'id');
         $part = Part::all();
-        $genru = new Genru;
-        return view('spend-new', ['spend' => $spend, 'array_part' => $array_part, 'part' => $part, 'genru' => $genru]);
+        $array_genru = Genru::all()->pluck('name', 'id');
+        $genrus = Genru::all();
+        return view('spend-new', ['spend' => $spend, 'array_part' => $array_part, 'part' => $part, 'array_genru' => $array_genru, 'genrus' => $genrus]);
     }
     
      public function store(Request $request){
@@ -44,6 +45,7 @@ class SpendController extends Controller
         'amount' => '個数',
         ]);
         
+        $genru = Genru::where('name', request('genru'))->first();
         $spend = new Spend;
         $spend->date = request('date');
         $spend->amount = request('amount');
@@ -51,7 +53,8 @@ class SpendController extends Controller
         $spend->shop = request('shop');
         $spend->purpose = request('purpose');
         $spend->other = request('other');
-        $spend->part_id = request('array_values(parts_id)');
+        $spend->part_id = request('array_values(part_id)');
+        $spend->genru_id = request('array_values(genru_id)');
         $spend->save();
         $stock = Stock::where('part_id', $spend->part_id)->first();
         if($spend->which == "購入"){ $stock->stock += $spend->amount;}

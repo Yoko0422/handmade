@@ -11,7 +11,7 @@
     <table class="table">
         <tr>
             <td rowspan="2" width="150"><strong>{{ $spend->date }}</strong></td>
-            <td width="300">{{$spend->part->genru }}<br><strong>{{ $spend->part->name }}</strong></td>
+            <td width="300">{{$spend->genru->name }}<br><strong>{{ $spend->part->name }}</strong></td>
             <td><strong>{{ $spend->which }}:</strong>{{$spend->purpose}}</td>
             <td width="120">{{ $spend->amount }}{{$spend->part->unit}}</td>
         </tr>

@@ -12,9 +12,7 @@ class GenruSeeder extends Seeder
     public function run()
     {
          $genrus = [
-            ['name' => '布'],
             ['name' => 'ビーズ'],
-            ['name' => 'メタル'],
             ];
         DB::table('genrus')->insert($genrus);
     }

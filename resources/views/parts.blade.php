@@ -27,19 +27,20 @@
         <td width="150"><strong>価格：</strong><br>￥{{ $part->price }} @ {{ $part->value }} {{ $part->unit }}</td>
         <td width="120"><strong>単価：</strong><br>￥{{ number_format($part->bit, 1) }} @ {{ $part->unit}}</td> <!--価格＠個数-->
         <td width="120"><strong>在庫数：</strong><br>{{ $part->stock->stock }} {{ $part->unit }}</td>
-        <td width="200" colspan="2"><strong>店名：</strong><br>{{ $part->shop }}</td> <!--単価-->
+        <td width="200"><strong>店名：</strong><br>{{ $part->shop }}</td> <!--単価-->
+        <td>
+            <div class="btn-group-vertical">
+                {{ Form::submit('編集', ['class' => 'btn btn-outline-dark"']) }}
+                {{ Form::submit('削除', ['class' => 'btn btn-outline-dark'])}}
+            </div>
+        </td>
     </tr>
     
     <tr>
-        <td colspan="4"><strong>備考：</strong>{{ $part->other }}</td>
-        <td><a href="{{ action('PartController@edit', ['id' => $part->id]) }}" class="nav-item nav-link disactive">編集</a></td>
-        <td><a href="{{ action('PartController@delete', ['id' => $part->id]) }}" class="nav-item nav-link disactive">削除</a></td>
+        <td colspan="6">{{ $part->other }}</td>
     </tr>
     
 </table>
-<hr>
-
-<p>　</p>
 
 @endforeach
 

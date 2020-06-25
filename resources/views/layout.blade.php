@@ -5,12 +5,39 @@
         <meta name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no'>
         <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css' >
        <script src="//ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-      <script type="text/javascript"></script>
         <title>@yield('title')</title>
         <style>
-        .main{padding-top: 60px;} 
-        .hide {display: none;}
+          .main{padding-top: 60px;} 
+          .hide {display: none;}
         </style>
+        <script type="text/javascript">
+          $(document).ready(function(){
+          
+          // プルダウンのoption内容をコピー
+          var gp = $("#select_g option").clone();
+          
+          // 1→2連動
+          $("#select_g").change(function () {
+          // lv1のvalue取得
+          var genru = $("#select_g").val();
+          
+          // lv2Pulldownのdisabled解除
+          $("#select_p").removeAttr("disabled");
+          
+          // 一旦、lv2Pulldownのoptionを削除
+          $("#select_p option").remove();
+          
+          // (コピーしていた)元のlv2Pulldownを表示
+          $(gp).appendTo("#select_p");
+          
+          // 選択値以外のクラスのoptionを削除
+          $("#select_p option[$genru_id == $genru_id]").remove();
+          
+          // 「▼選択」optionを先頭に表示
+          $("#select_p").prepend('<option value="0" selected="selected">▼選択</option>');
+          });
+          });
+        </script> 
     </head>
     <body>
 

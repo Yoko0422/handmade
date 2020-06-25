@@ -8,17 +8,14 @@
 <h2>パーツ登録</h2>
 <p>　</p>
 <form action="{{ action('PartController@store') }}" method="post" enctype="multipart/form-data">
-
-
-
-
+{{ csrf_field() }}
 
 <div class="row">
     <div class="col-sm-1">
     <label>分類</label>
     </div>
     <div class="col-sm-5">
-           <input type="text" name="genru" list="genrus" placeholder="テキスト入力/ダブルクリック" autocomplete="off" value="{{ old('genru') }}">
+           <input type="text" name="genru" list="genrus" placeholder="テキスト入力or選択" autocomplete="off" value="{{ old('genru') }}">
             <datalist id="genrus">
             <select name="genru_name">
             @foreach($genrus as $genru)
@@ -31,9 +28,6 @@
     </div>
 </div>
 
-
-
-
 <p>　</p>
 
 <div class="row">
@@ -41,7 +35,7 @@
     <label>パーツ名</label>
     </div>
     <div class="col-sm-8">
-    <input type="text" class="form-control" name="name" value="{{ old('name') }}">
+    <input type="text" class="form-control" name="name" value="{{ old('name') }}" autocomplete="off">
     </div>
 </div>
 
@@ -94,7 +88,7 @@
 </div>
 </div>
 <p>　</p>
-{{ csrf_field() }}
+
 <div class="row">
     <div class="col-sm-7">
         @foreach ($errors->all() as $error)
@@ -102,7 +96,10 @@
         @endforeach
     </div>
     <div class="col-sm-2">
-    <button type="submit">パーツ登録</button>
+        <div class="btn-group" role="group" aria-label="Basic example">
+            <button type="reset" class="btn btn-outline-dark">リセット</button>
+            <button type="submit" class="btn btn-outline-dark">登録</button>
+        </div>
     </div>
 </div>
 </form>
