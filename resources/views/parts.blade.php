@@ -24,14 +24,18 @@
     
     <tr>
         <td width="500">{{$part->genru->name }}<br><strong><font size="5">{{ $part->name }}</font></strong></td>
-        <td width="150"><strong>価格：</strong><br>￥{{ $part->price }} @ {{ $part->value }} {{ $part->unit }}</td>
+        <td width="150"><strong>価格@内容量：</strong><br>￥{{ $part->price }} @ {{ $part->value }} {{ $part->unit }}</td>
         <td width="120"><strong>単価：</strong><br>￥{{ number_format($part->bit, 1) }} @ {{ $part->unit}}</td> <!--価格＠個数-->
-        <td width="120"><strong>在庫数：</strong><br>{{ $part->stock->stock }} {{ $part->unit }}</td>
+        <td width="120"><strong>在庫数：</strong><br>
+        @if(isset($part->stock))
+        {{ $part->stock->stock }}
+        @endif
+        {{ $part->unit }}</td>
         <td width="200"><strong>店名：</strong><br>{{ $part->shop }}</td> <!--単価-->
-        <td>
+        <td width="100">
             <div class="btn-group-vertical">
-                {{ Form::submit('編集', ['class' => 'btn btn-outline-dark"']) }}
-                {{ Form::submit('削除', ['class' => 'btn btn-outline-dark'])}}
+                <a href="{{ action('PartController@update', ['id' => $part->id]) }}" class="badge badge-info">編集</a>　
+                <a href="{{ action('PartController@delete', ['id' => $part->id]) }}" class="badge badge-info btn-dell">削除</a>
             </div>
         </td>
     </tr>
@@ -52,6 +56,20 @@
          
         </div>
     </div>
-
+      
 </div>
+
+ <script>
+  $(function(){
+  $(".btn-dell").click(function(){
+  if(confirm("削除してよろしいですか？")){
+  //そのままsubmit（削除）
+  }else{
+  //cancel
+  return false;
+  }
+  });
+  });
+  </script>
+
 @endsection

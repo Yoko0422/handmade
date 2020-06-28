@@ -18,10 +18,11 @@ class PartController extends Controller
     
     public function parts(Request $request)
     {
-            $parts = Part::all();
-            $parts = Part::paginate(10);
-            $genrus = Genru::all();
-            return view('parts', ['parts' => $parts]);
+        $parts = Part::all();
+        $parts = Part::paginate(10);
+        $genrus = Genru::all();
+        $stock = Stock::all();
+        return view('parts', ['parts' => $parts]);
     }
     
      public function create()
@@ -56,6 +57,7 @@ class PartController extends Controller
             $genru->name = request('genru');
             $genru->save();
         }
+        
         $part = new Part;
         $part->name = request('name');
         $part->price = request('price');
@@ -75,11 +77,14 @@ class PartController extends Controller
     
     public function edit(Request $request){
       $part = Part::find($request->id);
-      return view('part-edit', ['part' => $part]);
+      $genrus = Genru::all();
+      return view('part-edit', ['part' => $part, 'genrus' => $genrus]);
     }
     
     
-    public function update(Request $request, $id, Part $part)
+    
+    
+    public function update(Request $request)
     {
      //バリデーション
         $request->validate([
@@ -97,8 +102,14 @@ class PartController extends Controller
         ]);
     
       // 該当するデータを上書きして保存する
+        $genru = Genru::where('name', request('genru'))->first();
+         if(empty($genru)){
+            $genru = new Genru;
+            $genru->name = request('genru');
+            $genru->save();
+         }
         $part = Part::find($request->id);
-        $part->genru = request('genru');
+        $part->genru_id = $genru->id;
         $part->name = request('name');
         $part->price = request('price');
         $part->value = request('value');
@@ -110,13 +121,15 @@ class PartController extends Controller
         return redirect()->route('parts.list', ['id' => $part->id]);
     }
     
-     public function delete($id)
-    {
-      // 該当するNews Modelを取得
-      $part = Part::find($id);
-      // 削除する
-      $part->delete();
-      return redirect('/parts');
-    }  
-
+    
+    
+    
+    
+    
+     public function delete(Request $request){
+        $part = part::find($request->id);
+        $part->delete();
+        return redirect('parts');
+        }
+        
 }

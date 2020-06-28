@@ -75,7 +75,7 @@
 <label>店名</label>
 </div>
 <div class="col-sm-8">
-<input type="text" class="form-control" name="shop">
+    <input type="text" class="form-control" name="shop">
 </div>
 </div>
 <p>　</p>

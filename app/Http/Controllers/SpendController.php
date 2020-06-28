@@ -16,17 +16,26 @@ class SpendController extends Controller
     {
         $spends = Spend::all();
         $spends = Spend::paginate(20);
-        return view('spends', ['spends' => $spends]);
+        $genrus = Genru::all();
+        return view('spends', ['spends' => $spends, 'genrus' => $genrus]);
     }
     
      public function create()
     {
         $spend = new Spend;
         $array_part = Part::all()->pluck('name', 'id');
-        $part = Part::all();
+        $parts = Part::all();
+        
+        $part_n = Part::all()->pluck('name', 'id');
+        $part_v = Part::all()->pluck('value', 'id');
+        $part_u = Part::all()->pluck('unit', 'id');
+        
         $array_genru = Genru::all()->pluck('name', 'id');
+        $genru_id = Genru::all()->pluck('id');
         $genrus = Genru::all();
-        return view('spend-new', ['spend' => $spend, 'array_part' => $array_part, 'part' => $part, 'array_genru' => $array_genru, 'genrus' => $genrus]);
+        return view('spend-new', ['spend' => $spend, 'array_part' => $array_part, 'parts' => $parts,
+                                  'part_n' => $part_n, 'part_v' => $part_v, 'part_u' => $part_u,
+                                  'array_genru' => $array_genru, 'genrus' => $genrus, 'genru_id' => $genru_id]);
     }
     
      public function store(Request $request){
@@ -54,7 +63,7 @@ class SpendController extends Controller
         $spend->purpose = request('purpose');
         $spend->other = request('other');
         $spend->part_id = request('array_values(part_id)');
-        $spend->genru_id = request('array_values(genru_id)');
+        $spend->genru_id = $genru->id;
         $spend->save();
         $stock = Stock::where('part_id', $spend->part_id)->first();
         if($spend->which == "購入"){ $stock->stock += $spend->amount;}
@@ -62,8 +71,6 @@ class SpendController extends Controller
         $stock->update();
         return redirect()->route('spends.list');
     } 
-    
-    
     
     public function edit(Request $request, $id){
       $part = Spend::find($request->id);
@@ -101,12 +108,12 @@ class SpendController extends Controller
     }
     
      public function delete(Request $request)
-    {
-      // 該当するSpend Modelを取得
+         {
       $spend = Spend::find($request->id);
       // 削除する
       $spend->delete();
       return redirect('/spends');
     }  
+
 
 }

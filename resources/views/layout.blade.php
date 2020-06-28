@@ -3,8 +3,10 @@
     <head>
         <meta charset='utf-8'>
         <meta name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no'>
+        <meta name='csrk-token' content='{{ csrf_token() }}'>
         <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css' >
-       <script src="//ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src='{{ asset("js/app.js") }}' defer></script>
         <title>@yield('title')</title>
         <style>
           .main{padding-top: 60px;} 
@@ -66,7 +68,9 @@
         <a class="nav-item nav-link disactive" href="#" }}>原価計算</a>
       </li>
     </ul>
-   //右側
+    <ul class="navbar-nav mr-auto">
+      右側  
+    </ul>
   </div>
 </nav>
 

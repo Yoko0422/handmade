@@ -19,9 +19,11 @@ Route::get('/parts', 'PartController@parts')->name('parts.list'); //パーツ一
 Route::get('/newp', 'PartController@create')->name('parts.new'); //パーツ登録フォーム
 Route::post('/parts', 'PartController@store')->name('parts.store'); //パーツ登録保存
 Route::get('/parts/edit/', 'PartController@edit')->name('parts.edit'); //パーツ情報編集
-Route::post('/parts/update', 'PartController@update')->name('parts.update'); //パーツ情報編集保存
-Route::post('/parts/{id}', 'PartController@delete')->name('parts.delete'); //パーツ情報削除
+Route::post('/parts/edit', 'PartController@update')->name('parts.update'); //パーツ情報編集保存
+Route::get('/parts/delete', 'PartController@delete')->name('parts.delete'); //パーツ情報削除
 
 Route::get('/spends', 'SpendController@spends')->name('spends.list'); //パーツ支出一覧ページ
 Route::get('/news', 'SpendController@create')->name('spends.new'); //パーツ支出記録フォーム
 Route::post('/spends', 'SpendController@store')->name('spend.store'); //パーツ登録保存
+
+Route::get('/home', 'HomeController@index')->name('home');

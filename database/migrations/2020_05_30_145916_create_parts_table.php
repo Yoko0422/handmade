@@ -17,7 +17,7 @@ class CreatePartsTable extends Migration
             $table->bigIncrements('id'); //パーツID
             $table->string('name'); //パーツ名
             $table->integer('price'); //価格
-            $table->integer('value'); //個数
+            $table->integer('value'); //内容量
             $table->string('unit'); //単位
             $table->float('bit'); //単価
             $table->string('shop')->nullable()->default(null);

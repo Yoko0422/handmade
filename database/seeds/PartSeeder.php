@@ -2,19 +2,19 @@
 
 use Illuminate\Database\Seeder;
 
-class GenruSeeder extends Seeder
+class PartSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      *
      * @return void
      */
-    public function run()
+     public function run()
     {
-         $genrus = [
-            ['name' => '1'],
+         $parts = [
+            ['shop' => '1'],
             ];
             
-        DB::table('genru')->insert($genrus);
+        DB::table('part')->insert($parts);
     }
 }

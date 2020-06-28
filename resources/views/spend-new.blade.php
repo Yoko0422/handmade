@@ -5,6 +5,7 @@
 @section('content')
 <div class="main">
     
+
 <h2>パーツ使用/購入記録を登録する</h2>
 <p>　</p>
 
@@ -43,12 +44,15 @@
     <label>分類</label>
     </div>
     <div class="col-sm-8">
-        <select name="genru_name" id="select_g">
+         {{Form::select('genru_id)', $array_genru, ['id' => "select_genrus"]) }}
+        <!--
+        <select name="genru_id">
             <option>全て</option>
             @foreach($genrus as $genru)
             <option value="{{$genru->name}}">{{$genru->name}}</option>
             @endforeach
-            </select>
+        </select>
+        -->
     </div>
 </div>
 
@@ -60,9 +64,11 @@
      {{ Form::label('name', 'パーツ名') }}
     </div>
     <div class="col-sm-4">
-        @if($genru->id === $part->genru_id)
-        {{Form::select('array_values(part_id)', $array_part, ['class' => 'g'.$genru->name, 'id' => 'select_p'])}}
-       @endif
+       <select name="genru_name">
+            @foreach($parts as $part)
+            <option value="{{$part->name}}" class="{{ $part->genru_id}}">{{$part->name}}</option>
+            @endforeach
+            </select>
     </div>
     <div class="col-sm-4">
     </div>
@@ -75,19 +81,7 @@
     <label>価格</label>
     </div>
     <div class="col-sm-2">
-       <script>
-           $(function(){
-               $('select').change(function() {
-                  const part = @json($part);
-                  var extraction_val = $('select').val();
-                  console.log(part[extraction_val]);
-                    if(extraction_val == 'part_id') {
-                        $('part_id').css('display', 'block');
-                    }
-                     console.log (part);
-               });
-            });
-       </script>
+      
     </div>
     <div class="col-sm-1">
     <label>　個数</label>
@@ -95,7 +89,7 @@
     <div class="col-sm-2">
      <input type="number" class="form-control" name="amount" value="{{ old('amount') }}">
     </div>
-<div class="col-sm-1">　　単位</div>
+    <div class="col-sm-1">　　単位</div>
     <div class="col-sm-2">
     
       </div>
