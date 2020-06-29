@@ -5,6 +5,20 @@
 @section('content')
 <div class="main">
     
+<script>
+    $("#select_genrus").change(function(){
+        if(firstChange){
+            // 最上位を選択（現在選択項目を解除）
+            $("#select_parts option[value='']").prop('selected',true);
+        }
+        firstChange = true;
+
+        $("#select_parts option").hide();
+        $("#select_parts option[data-parent='']").show();
+        $("#select_parts option[data-parent=" + this.value + "]").show();
+    });
+</script>
+
 
 <h2>パーツ使用/購入記録を登録する</h2>
 <p>　</p>
@@ -44,15 +58,7 @@
     <label>分類</label>
     </div>
     <div class="col-sm-8">
-         {{Form::select('genru_id)', $array_genru, ['id' => "select_genrus"]) }}
-        <!--
-        <select name="genru_id">
-            <option>全て</option>
-            @foreach($genrus as $genru)
-            <option value="{{$genru->name}}">{{$genru->name}}</option>
-            @endforeach
-        </select>
-        -->
+         {{Form::select('genru_id', $array_genru, ['id' => "select_genrus"]) }}
     </div>
 </div>
 
@@ -64,9 +70,9 @@
      {{ Form::label('name', 'パーツ名') }}
     </div>
     <div class="col-sm-4">
-       <select name="genru_name">
+       <select name="genru_name" id="select_parts">
             @foreach($parts as $part)
-            <option value="{{$part->name}}" class="{{ $part->genru_id}}">{{$part->name}}</option>
+            <option value="{{$part->name}}" class="{{ $part->genru_id}}" data-parent="{{$part->genru->id}}">{{$part->name}}</option>
             @endforeach
             </select>
     </div>

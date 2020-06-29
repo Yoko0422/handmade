@@ -25,4 +25,5 @@ class Part extends Model
     {
           return $this->belongsTo('App\User'); //Userモデルに所属
     }
+    
 }

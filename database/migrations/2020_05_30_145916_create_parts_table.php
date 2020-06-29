@@ -24,6 +24,7 @@ class CreatePartsTable extends Migration
             $table->text('other')->nullable()->default(null);
             $table->integer('genru_id');
             $table->timestamps();
+            
         });
     }
 

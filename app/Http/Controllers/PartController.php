@@ -11,9 +11,11 @@ use App\Http\Controllers\Controller;
 
 class PartController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        return view('index');
+    $user = $request->user();
+    $posts = $user->load('parts');
+    return view('index', ['parts'=>$parts->parts]);
     }
     
     public function parts(Request $request)

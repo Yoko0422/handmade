@@ -14,12 +14,14 @@ class CreateGenrusTable extends Migration
     public function up()
     {
         Schema::create('genrus', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->Increments('id');
             $table->string('name');
             $table->timestamps();
         });
-    }
-
+    }     
+    
+    
+            
     /**
      * Reverse the migrations.
      *

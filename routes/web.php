@@ -27,3 +27,6 @@ Route::get('/news', 'SpendController@create')->name('spends.new'); //パーツ�
 Route::post('/spends', 'SpendController@store')->name('spend.store'); //パーツ登録保存
 
 Route::get('/home', 'HomeController@index')->name('home');
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

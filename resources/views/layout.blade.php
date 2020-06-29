@@ -3,8 +3,11 @@
     <head>
         <meta charset='utf-8'>
         <meta name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no'>
-        <meta name='csrk-token' content='{{ csrf_token() }}'>
+        <meta name='csrf-token' content='{{ csrf_token() }}'>
         <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css' >
+        <script type=”text/javascript” src=”//code.jquery.com/jquery-1.11.0.min.js”></script>
+        <script type=”text/javascript” src=”//code.jquery.com/jquery-migrate-1.2.1.min.js”></script>
+        <script type=”text/javascript” src=”slick/slick.min.js”></script>
         <script src="//ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script src='{{ asset("js/app.js") }}' defer></script>
         <title>@yield('title')</title>
@@ -12,34 +15,6 @@
           .main{padding-top: 60px;} 
           .hide {display: none;}
         </style>
-        <script type="text/javascript">
-          $(document).ready(function(){
-          
-          // プルダウンのoption内容をコピー
-          var gp = $("#select_g option").clone();
-          
-          // 1→2連動
-          $("#select_g").change(function () {
-          // lv1のvalue取得
-          var genru = $("#select_g").val();
-          
-          // lv2Pulldownのdisabled解除
-          $("#select_p").removeAttr("disabled");
-          
-          // 一旦、lv2Pulldownのoptionを削除
-          $("#select_p option").remove();
-          
-          // (コピーしていた)元のlv2Pulldownを表示
-          $(gp).appendTo("#select_p");
-          
-          // 選択値以外のクラスのoptionを削除
-          $("#select_p option[$genru_id == $genru_id]").remove();
-          
-          // 「▼選択」optionを先頭に表示
-          $("#select_p").prepend('<option value="0" selected="selected">▼選択</option>');
-          });
-          });
-        </script> 
     </head>
     <body>
 
@@ -69,7 +44,28 @@
       </li>
     </ul>
     <ul class="navbar-nav mr-auto">
-      右側  
+       @guest
+                            <li><a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a></li>
+                        {{-- ログインしていたらユーザー名とログアウトボタンを表示 --}}
+                        @else
+                            <li class="nav-item dropdown">
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    {{ Auth::user()->name }} <span class="caret"></span>
+                                </a>
+
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                        {{ __('Logout') }}
+                                    </a>
+
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        @csrf
+                                    </form>
+                                </div>
+                            </li>
+                            @endguest 
     </ul>
   </div>
 </nav>
