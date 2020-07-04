@@ -72,7 +72,7 @@
 <label>販売店</label>
 </div>
 <div class="col-sm-8">
-<input type="text" class="form-control" name="shop">
+<input type="text" class="form-control" name="shop" value="{{ $part->shop }}">
 </div>
 </div>
 <p>　</p>

@@ -26,6 +26,7 @@
   </button>
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      @auth
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
        <a class="nav-item nav-link active" href={{ route('parts.list') }}>パーツ一覧 <span class="sr-only">(current)</span></a>
@@ -40,9 +41,11 @@
         <a class="nav-item nav-link disactive" href={{ route('spends.new') }}>パーツ支出登録</a>
       </li>
       <li class="nav-item">
-        <a class="nav-item nav-link disactive" href="#" }}>原価計算</a>
+        <a class="nav-item nav-link active" href={{route('genka')}}>原価計算</a>
       </li>
     </ul>
+    @endauth
+    
     <ul class="navbar-nav mr-auto">
        @guest
                             <li><a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a></li>

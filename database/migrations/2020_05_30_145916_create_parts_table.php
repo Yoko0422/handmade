@@ -23,6 +23,7 @@ class CreatePartsTable extends Migration
             $table->string('shop')->nullable()->default(null);
             $table->text('other')->nullable()->default(null);
             $table->integer('genru_id');
+            $table->integer('user_id');
             $table->timestamps();
             
         });

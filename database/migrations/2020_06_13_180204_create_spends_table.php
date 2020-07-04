@@ -23,6 +23,7 @@ class CreateSpendsTable extends Migration
             $table->string('other')->nullable()->default(null);
             $table->integer('part_id');
             $table->integer('genru_id');
+            $table->integer('user_id');
             $table->timestamps();
         });
     }

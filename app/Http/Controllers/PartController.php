@@ -13,24 +13,39 @@ class PartController extends Controller
 {
     public function index(Request $request)
     {
-    $user = $request->user();
-    $posts = $user->load('parts');
-    return view('index', ['parts'=>$parts->parts]);
+
+    return view('index');
     }
     
     public function parts(Request $request)
     {
         $parts = Part::all();
         $parts = Part::paginate(10);
-        $genrus = Genru::all();
         $stock = Stock::all();
-        return view('parts', ['parts' => $parts]);
+        
+        $user = \Auth::user();
+        if($user){
+            $login_user_id = $user->id;
+        }else{
+            $login_user_id = "";
+        }
+        
+        return view('parts', ['parts' => $parts, 'login_user_id' => $login_user_id]);
     }
     
      public function create()
     {
         $part = new Part;
+       
+       $user = \Auth::user();
+        if($user){
+            $login_user_id = $user->id;
+        }else{
+            $login_user_id = "";
+        }
+       
         $array_genru = Genru::all()->pluck('name', 'id');
+        
         $genrus = Genru::all();
         return view('part-new', ['part' => $part, 'array_genru' => $array_genru, 'genrus' => $genrus]);
     }
@@ -53,13 +68,17 @@ class PartController extends Controller
         'value' => '内容量',
         ]);
         
+         $user = \Auth::user();
+        
         $genru = Genru::where('name', request('genru'))->first();
+        
         if(empty($genru)){
             $genru = new Genru;
             $genru->name = request('genru');
+            $genru->user_id = $user->id;
             $genru->save();
         }
-        
+    
         $part = new Part;
         $part->name = request('name');
         $part->price = request('price');
@@ -69,6 +88,7 @@ class PartController extends Controller
         $part->shop = request('shop');
         $part->other = request('other');
         $part->genru_id = $genru->id;
+        $part->user_id = $user->id;
         $part->save();
         $stock = new Stock;
         $stock->part_id = $part->id;
@@ -123,11 +143,7 @@ class PartController extends Controller
         return redirect()->route('parts.list', ['id' => $part->id]);
     }
     
-    
-    
-    
-    
-    
+
      public function delete(Request $request){
         $part = part::find($request->id);
         $part->delete();

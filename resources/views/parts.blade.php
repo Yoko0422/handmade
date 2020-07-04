@@ -3,6 +3,20 @@
 @section('title', 'パーツ一覧')
 
 @section('content')
+
+<script>
+  $(function(){
+  $(".btn-dell").click(function(){
+  if(confirm("削除してよろしいですか？")){
+  //そのままsubmit（削除）
+  }else{
+  //cancel
+  return false;
+  }
+  });
+  });
+</script>
+
 <div class="main">
     
     <h2>パーツ一覧</h2>
@@ -19,7 +33,7 @@
       
    
 @foreach ($parts as $part)
-
+@if($part->user_id === $login_user_id)
 <table class="table">
     
     <tr>
@@ -45,7 +59,7 @@
     </tr>
     
 </table>
-
+    @endif
 @endforeach
 
     <div class="row">
@@ -58,18 +72,5 @@
     </div>
       
 </div>
-
- <script>
-  $(function(){
-  $(".btn-dell").click(function(){
-  if(confirm("削除してよろしいですか？")){
-  //そのままsubmit（削除）
-  }else{
-  //cancel
-  return false;
-  }
-  });
-  });
-  </script>
 
 @endsection
