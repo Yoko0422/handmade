@@ -12,19 +12,19 @@
 
 <div class="row">
     <div class="col-sm-1">
-    <label>分類</label>
+    <label><strong>分類名</strong></label>
     </div>
-    <div class="col-sm-5">
+    <div class="col-sm-8">
            <input type="text" name="genru" list="genrus" placeholder="テキスト入力or選択" autocomplete="off" value="{{ old('genru') }}">
             <datalist id="genrus">
             <select name="genru_name">
             @foreach($genrus as $genru)
+             @if($genru->user_id === $login_user_id)
             <option value="{{$genru->name}}">{{$genru->name}}</option>
+             @endif
             @endforeach
             </select>
             </datalist>
-    </div>
-    <div class="col-sm-3">
     </div>
 </div>
 
@@ -32,7 +32,7 @@
 
 <div class="row">
     <div class="col-sm-1">
-    <label>パーツ名</label>
+    <label><strong>パーツ名</strong></label>
     </div>
     <div class="col-sm-8">
     <input type="text" class="form-control" name="name" value="{{ old('name') }}" autocomplete="off">
@@ -43,13 +43,13 @@
 
 <div class="row">
     <div class="col-sm-1">
-    <label>価格</label>
+    <label><strong>価格</strong></label>
     </div>
     <div class="col-sm-2">
         <input type="number" class="form-control" name="price"  value="{{ old('price') }}">
     </div>
     <div class="col-sm-1">
-    <label>　内容量</label>
+    <label><strong>　内容量</strong></label>
     </div>
     <div class="col-sm-2">
      <input type="number" class="form-control" name="value" value="{{ old('value') }}">

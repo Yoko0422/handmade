@@ -34,10 +34,10 @@ document.addEventListener("DOMContentLoaded", function(){
 
 <div class="row">
     <div class="col-sm-2">
-    <label>日付</label>
+    <label><strong>日付</strong></label>
     </div>
     <div class="col-sm-8">
-     <input type="date" name="date"></input>
+     <input type="date" name="date" value="{{ old('date') }}"></input>
     </div>
 </div>
 
@@ -45,7 +45,7 @@ document.addEventListener("DOMContentLoaded", function(){
 
 <div class="row">
     <div class="col-sm-2">
-     {{ Form::label('name', '購入/消費') }}
+     <label><strong>購入/消費</strong></label>
     </div>
     <div class="col-sm-1">
         {{ Form::radio('which', '購入', false, ['id' => 'radio-one', 'class' => 'form-check-input']) }}購入
@@ -61,10 +61,17 @@ document.addEventListener("DOMContentLoaded", function(){
 
 <div class="row">
     <div class="col-sm-2">
-    <label>分類</label>
+    <label><strong>分類名</strong></label>
     </div>
     <div class="col-sm-8">
-         {{Form::select('genru_id', $array_genru, null, ['id' => 'maincategory'])}}
+        <select name="genru_id" id="maincategory">
+            <option value="" data-category="">-------------------</option>
+            @foreach($array_genrus as $array_genru)
+                @if($array_genru->user_id === $login_user_id)
+                    <option value="{{$array_genru->id}}">{{$array_genru->name}}</option>
+                @endif
+            @endforeach
+            </select>
     </div>
 </div>
 
@@ -72,13 +79,15 @@ document.addEventListener("DOMContentLoaded", function(){
 
 <div class="row">
     <div class="col-sm-2">
-     {{ Form::label('name', 'パーツ名') }}
+      <label><strong>パーツ名</strong></label>
     </div>
     <div class="col-sm-4">
        <select name="part_id" id="subcategory">
             <option value="" data-category="">-------------------</option>
             @foreach($parts as $part)
-            <option value="{{$part->id}}" class="{{ $part->genru_id}}" data-category="{{$part->genru->id}}">{{$part->name}}</option>
+                @if($part->user_id === $login_user_id)
+                    <option value="{{$part->id}}" class="{{ $part->genru_id}}" data-category="{{$part->genru->id}}">{{$part->name}}</option>
+               @endif
             @endforeach
             </select>
     </div>
@@ -89,22 +98,21 @@ document.addEventListener("DOMContentLoaded", function(){
 <p>　</p>
 
 <div class="row">
+    
     <div class="col-sm-1">
-    <label>価格</label>
-    </div>
-    <div class="col-sm-2">
-      
-    </div>
-    <div class="col-sm-1">
-    <label>　個数</label>
+    <label><strong>数量</strong></label>
     </div>
     <div class="col-sm-2">
      <input type="number" class="form-control" name="amount" value="{{ old('amount') }}">
     </div>
-    <div class="col-sm-1">　　単位</div>
-    <div class="col-sm-2">
     
-      </div>
+    <div class="col-sm-1">
+    <label>購入価格</label>
+    </div>
+    <div class="col-sm-2">
+      <input type="number" class="form-control" name="price" value="{{ old('price') }}">
+    </div>
+    
 </div>
 
 <p>　</p>
@@ -114,7 +122,7 @@ document.addEventListener("DOMContentLoaded", function(){
     <label>購入店</label>
     </div>
     <div class="col-sm-8">
-    <input type="text" class="form-control" name="shop">
+    <input type="text" class="form-control" name="shop" value="{{ old('shop') }}">
     </div>
 </div>
 
@@ -125,7 +133,7 @@ document.addEventListener("DOMContentLoaded", function(){
     <label>目的</label>
     </div>
     <div class="col-sm-8">
-    <input type="text" class="form-control" name="purpose">
+    <input type="text" class="form-control" name="purpose" value="{{ old('purpose') }}">
     </div>
 </div>
 

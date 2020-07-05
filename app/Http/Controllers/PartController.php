@@ -20,7 +20,7 @@ class PartController extends Controller
     public function parts(Request $request)
     {
         $parts = Part::all();
-        $parts = Part::paginate(10);
+        $parts = Part::paginate(20);
         $stock = Stock::all();
         
         $user = \Auth::user();
@@ -29,7 +29,7 @@ class PartController extends Controller
         }else{
             $login_user_id = "";
         }
-        
+             
         return view('parts', ['parts' => $parts, 'login_user_id' => $login_user_id]);
     }
     
@@ -47,7 +47,7 @@ class PartController extends Controller
         $array_genru = Genru::all()->pluck('name', 'id');
         
         $genrus = Genru::all();
-        return view('part-new', ['part' => $part, 'array_genru' => $array_genru, 'genrus' => $genrus]);
+        return view('part-new', ['part' => $part, 'login_user_id' => $login_user_id, 'array_genru' => $array_genru, 'genrus' => $genrus]);
     }
     
     public function store(Request $request){
@@ -102,9 +102,6 @@ class PartController extends Controller
       $genrus = Genru::all();
       return view('part-edit', ['part' => $part, 'genrus' => $genrus]);
     }
-    
-    
-    
     
     public function update(Request $request)
     {

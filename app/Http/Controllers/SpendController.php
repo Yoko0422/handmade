@@ -37,7 +37,7 @@ class SpendController extends Controller
         $parts = Part::all();
         
         //分類プルダウン用
-        $array_genru = Genru::all()->pluck('name', 'id');
+        $array_genrus = Genru::all();
         
         $user = \Auth::user();
         if($user){
@@ -46,8 +46,7 @@ class SpendController extends Controller
             $login_user_id = "";
         }
         
-    
-        return view('spend-new', ['spend' => $spend, 'parts' => $parts, 'array_genru' => $array_genru, 'login_user_id' => $login_user_id]);
+        return view('spend-new', ['spend' => $spend, 'parts' => $parts, 'array_genrus' => $array_genrus, 'login_user_id' => $login_user_id]);
     }
     
     //パーツ使用履歴フォーム・データ記録
@@ -56,6 +55,8 @@ class SpendController extends Controller
         $request->validate([
         'date' => 'required',
         'which' => 'required',
+        'genru_id' => 'required',
+        'part_id' => 'required',
         'amount' => 'required'
         ],
         [
@@ -64,7 +65,9 @@ class SpendController extends Controller
         [
         'date' => '日付',
         'which' => '購入/消費',
-        'amount' => '個数',
+        'genru_id' => '分類名',
+        'part_id' => 'パーツ名',
+        'amount' => '数量'
         ]);
         
         $user = \Auth::user();
