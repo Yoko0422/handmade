@@ -9,6 +9,7 @@
         <script type=”text/javascript” src=”//code.jquery.com/jquery-migrate-1.2.1.min.js”></script>
         <script type=”text/javascript” src=”slick/slick.min.js”></script>
         <script src="//ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script>
         <script src='{{ asset("js/app.js") }}' defer></script>
         <script>
               $(function(){

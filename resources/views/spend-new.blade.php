@@ -22,6 +22,7 @@ document.addEventListener("DOMContentLoaded", function(){
         $("#subcategory option[data-category=\"" + this.value + "\"]").show();
     }).change();
 });
+
 </script>
 
 

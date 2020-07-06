@@ -29,7 +29,7 @@ Route::post('/spends', 'SpendController@store')->name('spend.store')->middleware
 Route::get('/spends/delete', 'SpendController@delete')->name('spends.delete')->middleware('auth'); //パーツ情報削除
 
 Route::get('/cost', 'CostController@index')->name('cost')->middleware('auth'); //原価計算ページ
-Route::post('/cost', 'CostController@store')->name('cost.store')->middleware('auth'); //原価計算ページ、「計算」ボタンクリック後
+Route::post('/cost', 'CostController@calc')->name('cost.sum')->middleware('auth'); //原価計算ページ、「計算」ボタンクリック後
 
 
 Route::get('/home', 'HomeController@index')->name('home');
