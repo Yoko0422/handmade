@@ -5,69 +5,25 @@
 @section('content')
 <div class="main">
     
-<script>
-
-for (var count = 1; count <= 10; count++){
-
+<script type="text/javascript">
+for (let i = 1; i <= 10; i++){
     document.addEventListener("DOMContentLoaded", function(){
         // 初期値が設定されている場合は最上位を選択させない
-        var firstChange = ($("#subcategory" + count).val() == "");
+        var firstChange = ($("#subcategory" + i).val() == "");
     
-        $("#maincategory" + count).on("change",function(){
+        $("#maincategory" + i).on("change",function(){
             if(firstChange){
                 // 最上位を選択（現在選択項目を解除）
-                $("#subcategory+count option[value='']").prop('selected',true);
+                $("#subcategory" + i + "option[value='']").prop('selected',true);
             }
             firstChange = true;
     
-            $("#subcategory+count option").hide();
-            $("#subcategory+count option[data-category='']").show();
-            $("#subcategory+count option[data-category=\"" + this.value + "\"]").show();
+            $("#subcategory" + i + " option").hide();
+            $("#subcategory" + i + " option[data-category='']").show();
+            $("#subcategory" + i + " option[data-category=\"" + this.value + "\"]").show();
         }).change();
     });
 };
-
-/*
-$(function(){
-$('tr #category').each(function(i){
-  $(this).attr('class','sample' + (i+1));
-});
-});
-
-
-//２番目以降のフォーム
-document.addEventListener("DOMContentLoaded", function(){
-    // 初期値が設定されている場合は最上位を選択させない
-    var firstChange = ($('sample' + $i + '#subcategory').val() == "");
-
-    $("#maincategory".$i).on("change",function(){
-        if(firstChange){
-            // 最上位を選択（現在選択項目を解除）
-            $("#subcategory.$i option[value='']").prop('selected',true);
-        }
-        firstChange = true;
-
-        $("#subcategory.$i option").hide();
-        $("#subcategory.$i option[data-category='']").show();
-        $("#subcategory.$i option[data-category=\"" + this.value + "\"]").show();
-    }).change();
-});
-
-$("#container tr").each(function (i) {
-  i = i+1;
-  //変更をクリックしたときの処理
-    $('.item_' + i + ' .change span').click(function() {
-    //変更をクリックしたときの表示・非表示処理
-  
-      
-  });
-  //保存orキャンセルをクリックしたときの処理
-  $('.item_' + i + ' .edit span').click(function() {
-    //保存orキャンセルをクリックしたときの処理
-  });
-});
-*/
-
 </script>
 
 
@@ -83,7 +39,7 @@ $("#container tr").each(function (i) {
     </tr>
     
         @for($count=1; $count<=10; $count++)
-            <tr id="category">
+            <tr>
                 <td>
                     <div class="col-sm-8">
                         <select name="genru_name" id="maincategory{{$count}}">

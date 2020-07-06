@@ -34,5 +34,3 @@ Route::post('/cost', 'CostController@store')->name('cost.store')->middleware('au
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Auth::routes();
-

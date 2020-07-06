@@ -1,17 +1,17 @@
 @extends('layout')
 
-@section('title', 'パーツ支出記録')
+@section('title', 'パーツ支出一覧')
 
 @section('content')
 
 <div class="main">
-        <h2>パーツ支出記録</h2>
+        <h2>パーツ支出一覧</h2>
         <p></p>
          {!! $spends->render() !!}
-
+         
 <table class="table  table-hover">
     <tr>
-        <th>日付</th><th>分類</th><th>パーツ名</th><th>用途</th><th>数量</th><th>購入店</th><th>購入価格</th><th>削除</th>
+        <th>日付</th><th>分類名</th><th>パーツ名</th><th>用途</th><th>数量</th><th>購入店</th><th>購入価格</th><th>削除</th>
     </tr>     
     
     @foreach ($spends as $spend)
