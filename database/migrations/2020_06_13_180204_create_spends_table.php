@@ -19,7 +19,7 @@ class CreateSpendsTable extends Migration
             $table->string('which');
             $table->integer('amount');
             $table->string('purpose')->nullable()->default(null);
-            $table->string('price')->nullable()->default(null);
+            $table->integer('price')->nullable()->default(null);
             $table->string('shop')->nullable()->default(null);
             $table->string('other')->nullable()->default(null);
             $table->integer('part_id');
