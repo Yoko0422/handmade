@@ -18,7 +18,7 @@ Route::get('/', 'PartController@index')->name('app.index'); //homeページ
 Route::get('/parts', 'PartController@parts')->name('parts.list')->middleware('auth'); //パーツ一覧ページ
 Route::get('/newp', 'PartController@create')->name('parts.new')->middleware('auth'); //パーツ登録フォーム
 Route::post('/parts', 'PartController@store')->name('parts.store')->middleware('auth'); //パーツ登録保存
-Route::get('/parts/edit/', 'PartController@edit')->name('parts.edit')->middleware('auth'); //パーツ情報編集
+Route::get('/parts/edit', 'PartController@edit')->name('parts.edit')->middleware('auth'); //パーツ情報編集
 Route::post('/parts/edit', 'PartController@update')->name('parts.update')->middleware('auth'); //パーツ情報編集保存
 Route::get('/parts/delete', 'PartController@delete')->name('parts.delete')->middleware('auth'); //パーツ情報削除
 Route::get('/parts/search', 'PartController@parts')->name('parts.search')->middleware('auth'); //パーツ一覧検索

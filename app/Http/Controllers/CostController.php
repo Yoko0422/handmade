@@ -27,13 +27,17 @@ class CostController extends Controller
             $login_user_id = "";
         }
         
-        return view('cost', ['parts' => $parts, 'genrus' => $genrus, 'login_user_id' => $login_user_id, 'sum' => array()]);
+        $count = request('form_count') - 1;
+    
+        return view('cost', ['parts' => $parts, 'genrus' => $genrus, 'login_user_id' => $login_user_id, 'sum' => array(), 'count' => $count]);
     }
 
 
      public function calc(Request $request){
          
-         for($i=0; $i <= 9; $i++){
+         $count = request('form2');
+         
+         for($i=0; $i <= $count; $i++){
              $p_id = intval(request('part_name'.$i));
            if($p_id != null){
             //個数
@@ -60,9 +64,9 @@ class CostController extends Controller
         }else{
             $login_user_id = "";
         }
-         
-        return view('cost', ['sum' => $sum, 'p_id' => $p_id, 'amount' => $amount, 'part' => $part, 'name' => $name, 'unit' => $unit,
-                    'parts' => $parts, 'genrus' => $genrus, 'login_user_id' => $login_user_id ]);
+        
+        return view('cost', ['count' => $count, 'sum' => $sum, 'p_id' => $p_id, 'amount' => $amount, 'part' => $part, 'name' => $name, 'unit' => $unit,
+                    'parts' => $parts, 'genrus' => $genrus, 'login_user_id' => $login_user_id]);
     } 
     
 }

@@ -7,31 +7,26 @@
     
     <h2>原価計算</h2>
     
-    <p>　</p>
-    <script type="text/javascript">
-        for (let i = 0; i <= 9; i++){
-        document.addEventListener("DOMContentLoaded", function(){
-        // 初期値が設定されている場合は最上位を選択させない
-        var firstChange = ($("#subcategory" + i).val() == "");
-        
-        $("#maincategory" + i).on("change",function(){
-        if(firstChange){
-        // 最上位を選択（現在選択項目を解除）
-        $("#subcategory" + i + "option[value='']").prop('selected',true);
-        }
-        firstChange = true;
-        
-        $("#subcategory" + i + " option").hide();
-        $("#subcategory" + i + " option[data-category='']").show();
-        $("#subcategory" + i + " option[data-category=\"" + this.value + "\"]").show();
-        }).change();
-        });
-        };
-
-    </script>
-
+    
+    
+     <form action="" method="get" enctype="multipart/form-data">
+        {{ csrf_field() }}
+        <div class="row">
+                <div class="col-sm-1">
+                    <input type="number" class="form-control" name="form_count" id="form1">
+                </div>
+                    <div class="col-sm-2">
+                    <button type="submit" class="btn btn-outline-dark">入力数</button>
+                </div>
+         </div>
+     </form>
+    
+<p></p>
+   
+   @if($count > 0)
     <form action="{{action('CostController@calc')}}" method="post" enctype="multipart/form-data">
     {{ csrf_field() }}
+    <input id="form_count" type="hidden" name="form2" value={{$count}}>
     
         <table class="table-sm table-borderless">
             <tr>
@@ -44,7 +39,7 @@
                             <th>個数</th>
                         </tr>
                         
-                         @for($i=0; $i<= 9; $i++)
+                         @for($i=0; $i <= $count; $i++)
                         <tr>
                             <td>
                                 <select name="genru_name" id="maincategory{{$i}}">
@@ -77,7 +72,7 @@
                     
                 </td>
                 
-                <td width="500" class="align-baseline" style="background-color:#808080">
+                <td width="500" class="align-baseline" style="background-color:#f6f6f6">
                     
                     <table>
                         
@@ -85,14 +80,14 @@
                         
                         <tr>
                             <td rowspan="10" id="copy">
-                                @for($i=0; $i<= 9; $i++)
+                                @for($i=0; $i<= $count; $i++)
                                 <div>
                                     @isset($name[$i])
                                      ・ {{$name[$i]}}/
                                     @endisset
                                     
                                     @isset($_REQUEST['amount'.$i])
-                                      {{$REQUEST['amount'.$i]}}
+                                      {{$_REQUEST['amount'.$i]}}
                                     @endisset
                                     
                                     @isset($unit[$i])
@@ -105,7 +100,7 @@
                                 </div>
                                 @endfor
                                 <hr>
-                                 <strong>総原価：</strong>￥{{array_sum($sum)}}-
+                                 <strong>総原価：</strong>￥ @isset($sum){{array_sum($sum)}}-@endisset
                             </td>
                         </tr>
                         
@@ -125,5 +120,33 @@
             </tr>
         </table>
     </form>
+    
+    <script type="text/javascript">
+        var count = $('#form_count').val();
+        
+        console.log(count);
+        
+        
+        for (let i = 0; i <= count ; i++){
+        document.addEventListener("DOMContentLoaded", function(){
+        // 初期値が設定されている場合は最上位を選択させない
+        var firstChange = ($("#subcategory" + i).val() == "");
+        
+        $("#maincategory" + i).on("change",function(){
+        if(firstChange){
+        // 最上位を選択（現在選択項目を解除）
+        $("#subcategory" + i + "option[value='']").prop('selected',true);
+        }
+        firstChange = true;
+        
+        $("#subcategory" + i + " option").hide();
+        $("#subcategory" + i + " option[data-category='']").show();
+        $("#subcategory" + i + " option[data-category=\"" + this.value + "\"]").show();
+        }).change();
+        });
+        };
+
+    </script>
+@endif
 
 @endsection
