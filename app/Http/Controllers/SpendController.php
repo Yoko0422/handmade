@@ -76,6 +76,7 @@ class SpendController extends Controller
         $spend->date = request('date');
         $spend->amount = request('amount');
         $spend->which = request('which');
+        $spend->price = request('price');
         $spend->shop = request('shop');
         $spend->purpose = request('purpose');
         $spend->other = request('other');

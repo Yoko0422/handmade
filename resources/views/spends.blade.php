@@ -23,7 +23,7 @@
                     <td><strong>{{ $spend->which }}:</strong>{{$spend->purpose}}</td>
                     <td>{{ $spend->amount }}{{$spend->part->unit}}</td>
                     <td>{{$spend->shop}}</td>
-                    <td>価格</td>
+                    <td>{{$spend->price}}</td>
                     <td><a href="{{action('SpendController@delete', ['id' => $spend->id])}}" class="badge badge-info btn-dell">削除</a></td>
                  </tr>
                  @isset($part->other)

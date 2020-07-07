@@ -95,7 +95,7 @@
                                     @endisset
                                     
                                     @isset($sum[$i])
-                                      ￥{{$sum[$i]}}-
+                                      ￥{{number_format($sum[$i],1)}}-
                                     @endisset
                                 </div>
                                 @endfor

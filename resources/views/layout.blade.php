@@ -39,6 +39,7 @@
                             </a>
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <!-- ナビバー左側 -->
+                        @auth
                         <ul class="navbar-nav mr-auto">
                              <li class="nav-item active">
                                <a class="nav-item nav-link active" href={{ route('parts.list') }}>パーツ一覧 <span class="sr-only">(current)</span></a>
@@ -56,6 +57,7 @@
                                 <a class="nav-item nav-link active" href={{route('cost')}}>原価計算</a>
                               </li>
                         </ul>
+                        @endauth
 
                         <!-- ナビバー右側 -->
                         <ul class="navbar-nav ml-auto">
