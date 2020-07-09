@@ -38,6 +38,13 @@ class CostController extends Controller
          $count = request('form2');
          
          for($i=0; $i <= $count; $i++){
+           $g_id = intval(request('genru_name'.$i));
+           if($g_id != null){
+            //分類名
+            $genru = Genru::find($g_id);
+            $gname[$i] = $genru->name;
+           }
+            
              $p_id = intval(request('part_name'.$i));
            if($p_id != null){
             //個数
@@ -65,7 +72,9 @@ class CostController extends Controller
             $login_user_id = "";
         }
         
-        return view('cost', ['count' => $count, 'sum' => $sum, 'p_id' => $p_id, 'amount' => $amount, 'part' => $part, 'name' => $name, 'unit' => $unit,
+        return view('cost', ['count' => $count, 'sum' => $sum, 
+                    'g_id' => $g_id, 'genru' => $genru, 'gname' => $gname,
+                    'p_id' => $p_id, 'amount' => $amount, 'part' => $part, 'name' => $name, 'unit' => $unit,
                     'parts' => $parts, 'genrus' => $genrus, 'login_user_id' => $login_user_id]);
     } 
     

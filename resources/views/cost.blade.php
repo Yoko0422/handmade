@@ -16,7 +16,7 @@
                     <input type="number" class="form-control" name="form_count" id="form1">
                 </div>
                     <div class="col-sm-2">
-                    <button type="submit" class="btn btn-outline-dark">入力数</button>
+                    <button type="submit" class="btn btn-outline-dark">入力数決定</button>
                 </div>
          </div>
      </form>
@@ -42,11 +42,11 @@
                          @for($i=0; $i <= $count; $i++)
                         <tr>
                             <td>
-                                <select name="genru_name" id="maincategory{{$i}}">
+                                <select name="genru_name{{$i}}" id="maincategory{{$i}}">
                                 <option value="" data-category="">-------------------</option>
                                 @foreach($genrus as $genru)
                                     @if($genru->user_id === $login_user_id)
-                                        <option value="{{$genru->id}}" @if(old('genru_name')=="{{$genru->id}}") selected  @endif>{{$genru->name}}</option>
+                                        <option value="{{$genru->id}}">{{$genru->name}}</option>
                                     @endif
                                 @endforeach
                                 </select>
@@ -57,7 +57,7 @@
                                 <option value="" data-category="">-------------------</option>
                                 @foreach($parts as $part)
                                     @if($part->user_id === $login_user_id)
-                                        <option value="{{$part->id}}" class="{{ $part->genru_id}}" data-category="{{$part->genru->id}}" @if(old('part_name')=="{{$part->id}}") selected  @endif>{{$part->name}}</option>
+                                        <option value="{{$part->id}}" class="{{ $part->genru_id}}" data-category="{{$part->genru->id}}">{{$part->name}}</option>
                                     @endif
                                 @endforeach
                                 </select>
@@ -79,28 +79,32 @@
                         <tr><th> </th></tr>
                         
                         <tr>
-                            <td rowspan="10" id="copy">
+                            <td id="copyTarget">
                                 @for($i=0; $i<= $count; $i++)
                                 <div>
+                                    @isset($gname[$i])
+                                     ・ {{ $gname[$i]}} / 
+                                     @endisset
                                     @isset($name[$i])
-                                     ・ {{$name[$i]}}/
+                                      {{ $name[$i]}} / 
                                     @endisset
                                     
                                     @isset($_REQUEST['amount'.$i])
-                                      {{$_REQUEST['amount'.$i]}}
+                                      {{ $_REQUEST['amount'.$i] }}
                                     @endisset
                                     
                                     @isset($unit[$i])
-                                      {{$unit[$i]}}/
+                                      {{ $unit[$i] }} / 
                                     @endisset
                                     
                                     @isset($sum[$i])
-                                      ￥{{number_format($sum[$i],1)}}-
+                                      ￥{{ number_format($sum[$i], 1) }}-
                                     @endisset
                                 </div>
                                 @endfor
                                 <hr>
-                                 <strong>総原価：</strong>￥ @isset($sum){{array_sum($sum)}}-@endisset
+                                 <strong>総原価：</strong>￥@isset($sum){{array_sum($sum)}}-@endisset
+                                  <button onclick="copyToClipboard()">Copy text</button>
                             </td>
                         </tr>
                         
@@ -145,6 +149,16 @@
         }).change();
         });
         };
+        
+        function copyToClipboard() {
+            // コピー対象をJavaScript上で変数として定義する
+            var copyTarget = document.getElementById("copyTarget");
+
+            // コピー対象のテキストを選択する
+            copyTarget.select();
+
+            // 選択しているテキストをクリップボードにコピーする
+            document.execCommand("Copy");
 
     </script>
 @endif
