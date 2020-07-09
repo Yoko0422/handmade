@@ -104,7 +104,6 @@
                                 @endfor
                                 <hr>
                                  <strong>総原価：</strong>￥@isset($sum){{array_sum($sum)}}-@endisset
-                                  <button onclick="copyToClipboard()">Copy text</button>
                             </td>
                         </tr>
                         
@@ -149,17 +148,6 @@
         }).change();
         });
         };
-        
-        function copyToClipboard() {
-            // コピー対象をJavaScript上で変数として定義する
-            var copyTarget = document.getElementById("copyTarget");
-
-            // コピー対象のテキストを選択する
-            copyTarget.select();
-
-            // 選択しているテキストをクリップボードにコピーする
-            document.execCommand("Copy");
-
     </script>
 @endif
 
