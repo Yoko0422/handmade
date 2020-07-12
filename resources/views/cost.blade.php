@@ -103,7 +103,7 @@
                                 </div>
                                 @endfor
                                 <hr>
-                                 <strong>総原価：</strong>￥@isset($sum){{array_sum($sum)}}-@endisset
+                                 <strong>総原価：</strong>￥@isset($sum){{number_format(array_sum($sum), 1)}}-@endisset
                             </td>
                         </tr>
                         
