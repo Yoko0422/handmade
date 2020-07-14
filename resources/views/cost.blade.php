@@ -64,7 +64,7 @@
                             </td>
                             
                             <td width="100">
-                                <input type="number" class="form-control" name="amount{{$i}}"  value="{{ old('amount') }}">
+                                <input type="number" class="form-control size-input-zip3" maxlength="3" name="amount{{$i}}"  value="{{ old('amount') }}">
                             </td>
                         </tr>
                         @endfor
