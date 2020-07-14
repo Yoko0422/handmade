@@ -72,7 +72,7 @@
                     
                 </td>
                 
-                <td width="500" class="align-baseline" style="background-color:#f6f6f6">
+                <td class="align-baseline" style="background-color:#f6f6f6">
                     
                     <table>
                         
