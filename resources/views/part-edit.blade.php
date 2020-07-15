@@ -93,7 +93,7 @@
         @endforeach
     </div>
     <div class="col-sm-2">
-    <button type="submit">パーツ登録</button>
+    <button type="submit">パーツ情報編集</button>
     </div>
 </div>
 </form>
