@@ -9,7 +9,7 @@
         <p></p>
          {!! $parts->render() !!}
          
-<table class="table table-sm">
+<table class="table table-sm table-hover">
     <tr>
         <th scope="col">分類名</th>
         <th scope="col">パーツ名</th>

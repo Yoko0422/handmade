@@ -1,6 +1,6 @@
 @extends('layout')
 
-@section('title', 'アプリ名')
+@section('title', 'KARIN　-ハンドメイド支援アプリ-')
 
 @section('content')
 

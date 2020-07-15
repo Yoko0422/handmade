@@ -9,7 +9,7 @@
         <p></p>
          {!! $spends->render() !!}
          
-<table class="table table-sm">
+<table class="table table-sm table-hover">
     <tr>
         <th>日付</th><th>分類名</th><th>パーツ名</th><th>用途</th><th>数量</th><th>購入店</th><th>購入価格</th><th>削除</th>
     </tr>     
