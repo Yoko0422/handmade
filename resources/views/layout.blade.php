@@ -33,10 +33,10 @@
 
 
 <!-- ナビゲーションバー -->
-            <nav class="navbar navbar-expand-lg navbar-light" style="background-color:#f6f6f6">
+            <nav class="navbar navbar-expand-lg navbar-light" style="background-color:#badcad">
                  <div class="container">
                     <a class="navbar-brand" href="{{ url('/') }}">
-                                <h3>アプリケーション名</h3>
+                                <h3>KARIN</h3>
                             </a>
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <!-- ナビバー左側 -->
