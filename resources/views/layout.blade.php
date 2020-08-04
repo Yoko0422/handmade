@@ -31,64 +31,60 @@
     </head>
     <body>
 
-
-<!-- ナビゲーションバー -->
-            <nav class="navbar navbar-expand-lg navbar-light" style="background-color:#badcad">
-                 <div class="container">
-                    <a class="navbar-brand" href="{{ url('/') }}">
-                                <h3>KARIN</h3>
-                            </a>
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <!-- ナビバー左側 -->
-                        @auth
-                        <ul class="navbar-nav mr-auto">
-                             <li class="nav-item active">
-                               <a class="nav-item nav-link active" href={{ route('parts.list') }}>パーツ一覧 <span class="sr-only">(current)</span></a>
-                              </li>
-                              <li class="nav-item">
-                               <a class="nav-item nav-link disactive" href={{ route('parts.new') }}>パーツ登録</a>
-                              </li>
-                              <li class="nav-item">
-                                <a class="nav-item nav-link active" href={{ route('spends.list') }}>パーツ支出一覧</a>
-                              </li>
-                              <li class="nav-item">
-                                <a class="nav-item nav-link disactive" href={{ route('spends.new') }}>パーツ支出登録</a>
-                              </li>
-                              <li class="nav-item">
-                                <a class="nav-item nav-link active" href={{route('cost')}}>原価計算</a>
-                              </li>
-                        </ul>
-                        @endauth
-
-                        <!-- ナビバー右側 -->
-                        <ul class="navbar-nav ml-auto">
-                            @guest
-                            <li><a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a></li>
-                        {{-- ログインしていたらユーザー名とログアウトボタンを表示 --}}
-                        @else
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }} <span class="caret"></span>
-                                </a>
-
-                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
-
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>
-                            @endguest
-                        </ul>
-                    </div>
-                </div>
-            </nav>
-            <!-- ナビゲーションバーここまで -->
+<nav class="navbar navbar-expand-lg navbar-light" style="background-color:#badcad">
+    <a class="navbar-brand" href="{{ url('/') }}"><h3>KARIN</h3></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+        <div class="collapse navbar-collapse" id="navbarText">
+            @auth
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                    <a class="nav-item nav-link active" href={{ route('parts.list') }}>パーツ一覧 <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                    <a class="nav-item nav-link disactive" href={{ route('parts.new') }}>パーツ登録</a>
+                    </li>
+                    <li class="nav-item">
+                    <a class="nav-item nav-link active" href={{ route('spends.list') }}>パーツ支出一覧</a>
+                    </li>
+                    <li class="nav-item">
+                    <a class="nav-item nav-link disactive" href={{ route('spends.new') }}>パーツ支出登録</a>
+                    </li>
+                    <li class="nav-item">
+                    <a class="nav-item nav-link active" href={{route('cost')}}>原価計算</a>
+                    </li>
+                </ul>
+            @endauth
+        <span class="navbar-text">
+        <ul class="navbar-nav ml-auto">
+        @guest
+        <li><a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a></li>
+        {{-- ログインしていたらユーザー名とログアウトボタンを表示 --}}
+        @else
+        <li class="nav-item dropdown">
+        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+        {{ Auth::user()->name }} <span class="caret"></span>
+        </a>
+        
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+        <a class="dropdown-item" href="{{ route('logout') }}"
+        onclick="event.preventDefault();
+                 document.getElementById('logout-form').submit();">
+        {{ __('Logout') }}
+        </a>
+        
+        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+        @csrf
+        </form>
+        </div>
+        </li>
+        @endguest
+        </ul>
+        </span>
+        </div>
+        </div>
+</nav>        
 
 
         <div class='container'>

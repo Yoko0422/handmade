@@ -10,7 +10,7 @@
          {!! $parts->render() !!}
          
 <table class="table table-sm table-hover">
-    <tr>
+    <tr style="background-color:#badcad">
         <th scope="col">分類名</th>
         <th scope="col">パーツ名</th>
         <th scope="col">価格@内容量</th>
