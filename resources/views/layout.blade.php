@@ -11,6 +11,8 @@
         <script type=”text/javascript” src=”slick/slick.min.js”></script>
         <script src="//ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script src='{{ asset("js/app.js") }}' defer></script>
+        <link href="{{ secure_asset('app.css') }}" rel="stylesheet">
+        <link href="{{ secure_asset('custom.css') }}" rel="stylesheet">
         <script>
               $(function(){
               $(".btn-dell").click(function(){
@@ -31,8 +33,8 @@
     </head>
     <body>
 
-<nav class="navbar navbar-expand-lg navbar-light" style="background-color:#badcad">
-    <a class="navbar-brand" href="{{ url('/') }}"><h3>KARIN</h3></a>
+<nav class="navbar navbar-expand-lg navbar-light fixed-top" style="background-color:rgba(137,201,151,0.7);">
+    <a class="navbar-brand" href={{ route('app.index') }}><h3>KARIN</h3></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -54,8 +56,14 @@
                     <li class="nav-item">
                     <a class="nav-item nav-link active" href={{route('cost')}}>原価計算</a>
                     </li>
-                </ul>
             @endauth
+            　　　　<li class="nav-item">
+                    <a class="nav-item nav-link disactive" href="#" }}>KARINについて</a>
+                    </li>
+                    <li class="nav-item">
+                    <a class="nav-item nav-link active" href="#">使い方</a>
+                    </li>
+                </ul>
         <span class="navbar-text">
         <ul class="navbar-nav ml-auto">
         @guest
@@ -87,8 +95,10 @@
 </nav>        
 
 
-        <div class='container'>
+
+
+        
             @yield('content')
-        </div>
+
     </body>
 </html>

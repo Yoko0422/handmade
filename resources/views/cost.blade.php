@@ -3,6 +3,7 @@
 @section('title', '原価計算')
 
 @section('content')
+<div class="container">
 <div class="main">
     
     <h2>原価計算</h2>

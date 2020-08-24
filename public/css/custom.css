@@ -1,0 +1,25 @@
+body {
+  background-color: #efffe0;
+}
+
+.form-margin {
+  padding-bottom: 15px;
+}
+
+#menu {
+  z-index: 99;
+  cursor: pointer;
+  position: fixed;
+  top: 40%;
+  right: -140px;
+  background: #0DCEA8;
+  width: 180px;
+  color: #fff;
+  font-size: 16px;
+}
+
+.index-table {
+  width: 100%;
+  background-color: rgba(84, 145, 127, 0.5);
+}
+
