@@ -62,10 +62,11 @@ class PartController extends Controller
         'required' => '・:attribute は必須項目です',
         ],
         [
-        'genru' => '分類',
+        'genru' => '分類名',
         'name' => 'パーツ名',
         'price' => '価格',
         'value' => '内容量',
+        'unit' => '単位',
         ]);
         
          $user = \Auth::user();

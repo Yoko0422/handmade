@@ -25,11 +25,11 @@
             @if($part->user_id === $login_user_id)
             <tr>
                 <td>
-                    @if(mb_strlen($part->genru->name) >= 20)
-                     <span class="sfont">{{ $part->genru->name }}</span>
-                    @else
-                        {{ $part->genru->name }}
-                    @endif
+                      @if(mb_strlen($part->genru->name) >= 20)
+                         <span class="sfont">{{ $part->genru->name }}</span>
+                      @else
+                            {{ $part->genru->name }}
+                      @endif
                 </td>
                 
                 <td>

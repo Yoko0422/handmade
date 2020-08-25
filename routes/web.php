@@ -28,6 +28,12 @@ Route::get('/news', 'SpendController@create')->name('spends.new')->middleware('a
 Route::post('/spends', 'SpendController@store')->name('spend.store')->middleware('auth'); //パーツ登録保存
 Route::get('/spends/delete', 'SpendController@delete')->name('spends.delete')->middleware('auth'); //パーツ情報削除
 
+Route::get('/genrus', 'GenruController@genrus')->name('genrus.list')->middleware('auth'); //ジャンル一覧ページ
+Route::get('/genrus/edit', 'GenruController@edit')->name('genrus.edit')->middleware('auth'); //パーツ情報編集
+Route::post('/genrus/edit', 'GenruController@update')->name('genrus.update')->middleware('auth'); //パーツ情報編集保存
+Route::get('/genrus/delete', 'GenruController@delete')->name('Genrus.delete')->middleware('auth'); //パーツ情報削除
+
+
 Route::get('/cost', 'CostController@index')->name('cost')->middleware('auth'); //原価計算ページ
 Route::post('/cost', 'CostController@calc')->name('cost.sum')->middleware('auth'); //原価計算ページ、「計算」ボタンクリック後
 
