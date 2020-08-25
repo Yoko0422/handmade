@@ -11,8 +11,8 @@
         <script type=”text/javascript” src=”slick/slick.min.js”></script>
         <script src="//ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script src='{{ asset("js/app.js") }}' defer></script>
-        <link href="{{ secure_asset('app.css') }}" rel="stylesheet">
-        <link href="{{ secure_asset('custom.css') }}" rel="stylesheet">
+        <link href="{{ secure_asset('css/app.scss') }}" rel="stylesheet">
+        <link href="{{ secure_asset('css/custom.css') }}" rel="stylesheet">
         <script>
               $(function(){
               $(".btn-dell").click(function(){
@@ -31,16 +31,17 @@
           .hide {display: none;}
         </style>
     </head>
+    
     <body>
 
-<nav class="navbar navbar-expand-lg navbar-light fixed-top" style="background-color:rgba(137,201,151,0.7);">
-    <a class="navbar-brand" href={{ route('app.index') }}><h3>KARIN</h3></a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-        <div class="collapse navbar-collapse" id="navbarText">
+        <nav class="navbar navbar-expand-lg navbar-light fixed-top" style="background-color:rgba(137,201,151,0.7);">
+            <a class="navbar-brand" href={{ route('app.index') }}><h3>RakKan</h3></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarText">
+                   <ul class="navbar-nav mr-auto">
             @auth
-                <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
                     <a class="nav-item nav-link active" href={{ route('parts.list') }}>パーツ一覧 <span class="sr-only">(current)</span></a>
                     </li>
@@ -61,44 +62,44 @@
                     <a class="nav-item nav-link disactive" href="#" }}>KARINについて</a>
                     </li>
                     <li class="nav-item">
-                    <a class="nav-item nav-link active" href="#">使い方</a>
+                    <a class="nav-item nav-link active" href={{ route('howto') }}>使い方</a>
                     </li>
                 </ul>
-        <span class="navbar-text">
-        <ul class="navbar-nav ml-auto">
-        @guest
-        <li><a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a></li>
-        {{-- ログインしていたらユーザー名とログアウトボタンを表示 --}}
-        @else
-        <li class="nav-item dropdown">
-        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-        {{ Auth::user()->name }} <span class="caret"></span>
-        </a>
+            <span class="navbar-text">
+                <ul class="navbar-nav ml-auto">
+            @guest
+                <li><a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a></li>
+            {{-- ログインしていたらユーザー名とログアウトボタンを表示 --}}
+            @else
+                <li class="nav-item dropdown">
+                    <a id="navbarDropdown" class="nav-link dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                        {{ Auth::user()->name }} <span class="caret"></span>
+                    </a>
         
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-        <a class="dropdown-item" href="{{ route('logout') }}"
-        onclick="event.preventDefault();
-                 document.getElementById('logout-form').submit();">
-        {{ __('Logout') }}
-        </a>
-        
-        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-        @csrf
-        </form>
-        </div>
-        </li>
-        @endguest
-        </ul>
-        </span>
-        </div>
-        </div>
-</nav>        
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="{{ route('logout') }}"
+                onclick="event.preventDefault();
+                         document.getElementById('logout-form').submit();">
+                {{ __('Logout') }}
+                </a>
+                
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+            @csrf
+                </form>
+                </div>
+                </li>
+            @endguest
+                </ul>
+                </span>
+                </div>
+                </div>
+        </nav>        
 
-
-
-
-        
             @yield('content')
+            
+        <nav class="navbar navbar-expand-lg navbar-light fixed-bottom" style="background-color:rgb(137,201,151);">
+           Aechemical Cray
+        </nav>        
 
     </body>
 </html>

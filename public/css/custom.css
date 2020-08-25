@@ -1,10 +1,13 @@
-body {
-  background-color: #efffe0;
+html {
+  color: #00533f;
+  margin-top:10px;
+  margin-bottom: 50px;
 }
 
 .form-margin {
   padding-bottom: 15px;
 }
+
 
 #menu {
   z-index: 99;
@@ -19,7 +22,52 @@ body {
 }
 
 .index-table {
-  width: 100%;
-  background-color: rgba(84, 145, 127, 0.5);
+  background-image:url(../image/top.jpg);
+  margin-top:62px;
+  border: 4px #000000 solid;
 }
 
+.under {
+  background: linear-gradient(transparent 50%, #dbebc4 50%);
+}
+
+.under2 {
+  border-bottom: dashed 2px #a7d28d;
+}
+
+
+/*フォームデザイン*/
+.box30 {
+    margin: 2em 0;
+    background: #FFFFFF;
+    box-shadow: 0 2px 4px rgba(0, 83, 63, 0.22);
+    padding: 20px;
+}
+.box30 .box-title {
+    font-size: 1.2em;
+    background: #FFFFFF;
+    padding: 2px;
+    text-align: center;
+    font-weight: bold;
+    letter-spacing: 0.05em;
+}
+.box30 p {
+    padding: 15px 20px;
+    margin: 0;
+}
+
+
+/* フォームパーツデザイン*/
+input.lg {
+  width: 400px;
+ }
+input.sm { width: 200px; }
+textarea {
+width: 50px;
+height: 6em;
+}
+
+.sfont{
+  font-size: 80%;
+  font-weight: bold;
+}

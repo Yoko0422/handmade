@@ -13,16 +13,31 @@
      <form action="" method="get" enctype="multipart/form-data">
         {{ csrf_field() }}
         <div class="row">
-                <div class="col-sm-1">
-                    <input type="number" class="form-control" name="form_count" id="form1">
+                <div class="offset-sm-2 col-sm-2">
+                     <select name="form_count">
+                        <option value="">--</option>
+                        <option value="10">10パーツ</option>
+                        <option value="20">20パーツ</option>
+                        <option value="30">30パーツ</option>
+                        <option value="40">40パーツ</option>
+                        <option value="50">50パーツ</option>
+                        <option value="60">60パーツ</option>
+                        <option value="70">70パーツ</option>
+                        <option value="80">80パーツ</option>
+                        <option value="90">90パーツ</option>
+                        <option value="100">100パーツ</option>
+                    </select>
                 </div>
-                    <div class="col-sm-2">
-                    <button type="submit" class="btn btn-outline-dark">入力数決定</button>
+                <div class="col-sm-2">
+                    <button type="submit" class="btn btn-outline-dark">入力フォーム数決定</button>
+                </div>
+                <div>
                 </div>
          </div>
      </form>
     
-<p></p>
+<p> </p>
+<hr>
    
    @if($count > 0)
     <form action="{{action('CostController@calc')}}" method="post" enctype="multipart/form-data">

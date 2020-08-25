@@ -31,6 +31,6 @@ Route::get('/spends/delete', 'SpendController@delete')->name('spends.delete')->m
 Route::get('/cost', 'CostController@index')->name('cost')->middleware('auth'); //原価計算ページ
 Route::post('/cost', 'CostController@calc')->name('cost.sum')->middleware('auth'); //原価計算ページ、「計算」ボタンクリック後
 
-
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/howto', 'HomeController@howto')->name('howto');
 
