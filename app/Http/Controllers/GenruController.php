@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Genru;
+use App\Part;
 
 class GenruController extends Controller
 {
@@ -38,8 +39,8 @@ class GenruController extends Controller
     
      public function delete(Request $request){
         $genru = Genru::find($request->id);
-        $genru->name = '未分類';
-        $genru->save();
-        return redirect('parts');
+        $genru->delete();
+        return redirect('genrus');
         }
+    
 }

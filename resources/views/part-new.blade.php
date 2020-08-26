@@ -25,17 +25,18 @@
                     
                     
                     
-                            <div><strong>分類名</strong><a href={{ route('genrus.list')}}>分類名を編集する</a></div>
+                            <div><strong>分類名</strong><!--<a href={{ route('genrus.list')}}>分類名を編集する</a></div>-->
                             <div class="form-margin">
-                                <input type="text" class="lg" name="genru" list="genrus" placeholder="テキスト入力or選択" autocomplete="off"
+                                <input type="text" class="sm" name="genru" list="genrus" placeholder="テキスト入力or選択" autocomplete="off"
                                 value="{{ old('genru') }}">
                                 <datalist id="genrus">
                                 <select name="genru_name">
-                                @foreach($genrus as $genru)
-                                 @if($genru->user_id === $login_user_id)
-                                <option value="{{$genru->name}}">{{$genru->name}}</option>
-                                 @endif
-                                @endforeach
+                                 <option value="未分類">未分類</option>
+                                 @foreach($genrus as $genru)
+                                  @if($genru->user_id === $login_user_id)
+                                 <option value="{{$genru->name}}">{{$genru->name}}</option>
+                                  @endif
+                                 @endforeach
                                 </select>
                                 </datalist>
                             </div>
@@ -104,13 +105,7 @@
                                <textarea class="form-control" name="other" rows="3" value="{{ old('other') }}"></textarea>
                             </div>
                        
-                        </div>
-                    </div>
-                </div>
-            </div>
-                
-            <div class="row">
-                <div class="offset-sm-2 col-sm-2">
+               
                     
                     <div class="btn-group" role="group" aria-label="Basic example">
                         <button type="reset" class="btn btn-outline-dark">リセット</button>

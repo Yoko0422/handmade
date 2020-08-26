@@ -35,7 +35,7 @@
     <body>
 
         <nav class="navbar navbar-expand-lg navbar-light fixed-top" style="background-color:rgba(137,201,151,0.7);">
-            <a class="navbar-brand" href={{ route('app.index') }}><h3>RakKan</h3></a>
+            <a class="navbar-brand" href={{ route('app.index') }}> <span class="h4">パーツ管理・計算アプリ</span>β版</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -58,9 +58,6 @@
                     <a class="nav-item nav-link active" href={{route('cost')}}>原価計算</a>
                     </li>
             @endauth
-            　　　　<li class="nav-item">
-                    <a class="nav-item nav-link disactive" href="#" }}>KARINについて</a>
-                    </li>
                     <li class="nav-item">
                     <a class="nav-item nav-link active" href={{ route('howto') }}>使い方</a>
                     </li>
@@ -94,6 +91,7 @@
                 </div>
                 </div>
         </nav>        
+
 
             @yield('content')
             

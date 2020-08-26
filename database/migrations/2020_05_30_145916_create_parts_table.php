@@ -22,7 +22,7 @@ class CreatePartsTable extends Migration
             $table->float('bit'); //単価
             $table->string('shop')->nullable()->default(null);
             $table->text('other')->nullable()->default(null);
-            $table->integer('genru_id');
+            $table->integer('genru_id')->nullable()->default(null);
             $table->integer('user_id');
             $table->timestamps();
             

@@ -15,7 +15,7 @@ class CreateGenrusTable extends Migration
     {
         Schema::create('genrus', function (Blueprint $table) {
             $table->Increments('id');
-            $table->string('name');
+            $table->string('name')->nullable()->default(null);;
             $table->integer('user_id');
             $table->timestamps();
         });
