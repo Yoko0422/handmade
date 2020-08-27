@@ -24,6 +24,18 @@
               }
               });
               });
+              
+              $(function(){
+              $(".btn-dell-genru").click(function(){
+              if(confirm("分類名を削除すると、関連するパーツ情報・支出記録も削除されます。削除してもよろしいですか？")){
+              //そのままsubmit（削除）
+              }else{
+              //cancel
+              return false;
+              }
+              });
+              });
+
         </script>
         <title>@yield('title')</title>
         <style>

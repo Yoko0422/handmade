@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Part;
+use App\Spend;
 use App\Genru;
 use App\Stock;
 
@@ -17,6 +18,8 @@ class PartController extends Controller
     return view('index');
     }
     
+    
+    //パーツ一覧ページ
     public function parts(Request $request)
     {
         $parts = Part::all();
@@ -33,6 +36,7 @@ class PartController extends Controller
         return view('parts', ['parts' => $parts, 'login_user_id' => $login_user_id]);
     }
     
+    //パーツ情報登録ページ
      public function create()
     {
         $part = new Part;
@@ -50,6 +54,8 @@ class PartController extends Controller
         return view('part-new', ['part' => $part, 'login_user_id' => $login_user_id, 'array_genru' => $array_genru, 'genrus' => $genrus]);
     }
     
+    
+    //パーツ情報記録
     public function store(Request $request){
         //バリデーション
         $request->validate([
@@ -98,12 +104,25 @@ class PartController extends Controller
         return redirect()->route('parts.list');
     } 
     
+    
+    //パーツ情報編集ページ
     public function edit(Request $request){
       $part = Part::find($request->id);
+      
       $genrus = Genru::all();
-      return view('part-edit', ['part' => $part, 'genrus' => $genrus]);
+      
+      $user = \Auth::user();
+        if($user){
+            $login_user_id = $user->id;
+        }else{
+            $login_user_id = "";
+        }
+        
+      return view('part-edit', ['part' => $part, 'genrus' => $genrus, 'login_user_id' => $login_user_id]);
     }
     
+    
+    //パーツ編集情報記録
     public function update(Request $request)
     {
      //バリデーション
@@ -141,11 +160,14 @@ class PartController extends Controller
         return redirect()->route('parts.list', ['id' => $part->id]);
     }
     
-
+    
+    //パーツ情報削除
      public function delete(Request $request){
         $part = part::find($request->id);
         $part->delete();
         return redirect('parts');
         }
         
+
+
 }

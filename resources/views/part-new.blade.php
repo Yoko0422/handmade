@@ -25,7 +25,7 @@
                     
                     
                     
-                            <div><strong>分類名</strong><!--<a href={{ route('genrus.list')}}>分類名を編集する</a></div>-->
+                            <div><strong>分類名</strong><a href={{ route('genrus.list')}}>分類名を編集する</a></div>
                             <div class="form-margin">
                                 <input type="text" class="sm" name="genru" list="genrus" placeholder="テキスト入力or選択" autocomplete="off"
                                 value="{{ old('genru') }}">

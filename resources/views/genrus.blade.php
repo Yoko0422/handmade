@@ -27,7 +27,7 @@
                     
                                         @else
                                         <a href="{{ action('GenruController@update', ['id' => $genru->id]) }}" class="badge badge-info" target="genruedit">編集</a>
-                                        <a href="{{ action('GenruController@delete', ['id' => $genru->id]) }}" class="badge badge-info btn-dell">削除</a>
+                                        <a href="{{ action('GenruController@delete', ['id' => $genru->id]) }}" class="badge badge-info btn-dell-genru">削除</a>
                                         @endif
                                     </td>
                                     </tr>
