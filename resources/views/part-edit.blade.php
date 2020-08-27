@@ -40,51 +40,86 @@
                              <input type="text" class="form-control lg" name="name" value="{{ $part->name }}">
                         </div>
                         
-                        <div><strong>価格</strong></div>
+                        <div><strong>価格</strong>　(円)</div>
                         <div class="form-margin">
                             <input type="number" class="form-control sm" name="price"  value="{{ $part->price }}">
                         </div>
                         
-                         <div><strong>内容量</strong></div>
-                        <div class="form-margin">
-                            <input type="number" class="form-control sm" name="value" value="{{ $part->value }}">
+                        
+                        <div class="row">
+                            <div class="col-sm-4">
+                             <div><strong>内容量</strong></div>
+                             <div class="form-margin">
+                                <input type="number" class="form-control sm" name="value" value="{{ $part->value }}">
+                             </div>
+                            </div>
+                            
+                            <div class="col-sm-2">
+                                <div><strong>単位</strong></div>
+                                    <div class="form-margin">
+                                        <select class="custom-select" name="unit" value="{{ $part->unit }}">
+                                             @if($part->unit == '個')
+                                                <option value='個' selected>個</option>
+                                                <option value='枚'>枚</option>
+                                                <option value='cm'>cm</option>
+                                                <option value='m'>m</option>
+                                                <option value='g'>g</option>
+                                                <option value='kg'>kg</option>
+                                                <option value='cc'>cc</option>
+                                             @elseif($part->unit == '枚')
+                                                <option value='個'>個</option>
+                                                <option value='枚' selected>枚</option>
+                                                <option value='cm'>cm</option>
+                                                <option value='m'>m</option>
+                                                <option value='g'>g</option>
+                                                <option value='kg'>kg</option>
+                                                <option value='cc'>cc</option>
+                                             @elseif($part->unit == 'cm')
+                                                <option value='個'>個</option>
+                                                <option value='枚'>枚</option>
+                                                <option value='cm' selected>cm</option>
+                                                <option value='m'>m</option>
+                                                <option value='g'>g</option>
+                                                <option value='kg'>kg</option>
+                                                <option value='cc'>cc</option>
+                                             @elseif($part->unit == 'm')
+                                                <option value='個'>個</option>
+                                                <option value='枚'>枚</option>
+                                                <option value='cm'>cm</option>
+                                                <option value='m' selected>m</option>
+                                                <option value='g'>g</option>
+                                                <option value='kg'>kg</option>
+                                                <option value='cc'>cc</option>
+                                             @elseif($part->unit == 'g')
+                                                <option value='個'>個</option>
+                                                <option value='枚'>枚</option>
+                                                <option value='cm'>cm</option>
+                                                <option value='m'>m</option>
+                                                <option value='g' selected>g</option>
+                                                <option value='kg'>kg</option>
+                                                <option value='cc'>cc</option>
+                                             @elseif($part->unit == 'kg')
+                                                <option value='個'>個</option>
+                                                <option value='枚'>枚</option>
+                                                <option value='cm'>cm</option>
+                                                <option value='m'>m</option>
+                                                <option value='g'>g</option>
+                                                <option value='kg' selected>kg</option>
+                                                <option value='cc'>cc</option>
+                                             @else
+                                                <option value='個'>個</option>
+                                                <option value='枚'>枚</option>
+                                                <option value='cm'>cm</option>
+                                                <option value='m'>m</option>
+                                                <option value='g'>g</option>
+                                                <option value='kg'>kg</option>
+                                                <option value='cc' selected>cc</option>
+                                             @endif
+                                        </select>
+                                    </div>
+                                </div>
                         </div>
                         
-                        <div><strong>単位</strong></div>
-                            <div class="form-margin">
-                                <div class="form-check form-check-inline">
-                                  <input class="form-check-input" type="radio" name="unit" value="個">
-                                  <label class="form-check-label" for="inlineRadio1">個</label>
-                                </div>
-                                 <div class="form-check form-check-inline">
-                                  <input class="form-check-input" type="radio" name="unit" value="本">
-                                  <label class="form-check-label" for="inlineRadio1">本</label>
-                                </div>
-                                 <div class="form-check form-check-inline">
-                                  <input class="form-check-input" type="radio" name="unit" value="枚">
-                                  <label class="form-check-label" for="inlineRadio1">枚</label>
-                                </div>
-                                 <div class="form-check form-check-inline">
-                                  <input class="form-check-input" type="radio" name="unit" value="cm">
-                                  <label class="form-check-label" for="inlineRadio1">cm</label>
-                                </div>
-                                 <div class="form-check form-check-inline">
-                                  <input class="form-check-input" type="radio" name="unit" value="m">
-                                  <label class="form-check-label" for="inlineRadio1">m</label>
-                                </div>
-                                 <div class="form-check form-check-inline">
-                                  <input class="form-check-input" type="radio" name="unit" value="g">
-                                  <label class="form-check-label" for="inlineRadio1">g</label>
-                                </div>
-                                 <div class="form-check form-check-inline">
-                                  <input class="form-check-input" type="radio" name="unit" value="kg">
-                                  <label class="form-check-label" for="inlineRadio1">kg</label>
-                                </div>
-                                 <div class="form-check form-check-inline">
-                                  <input class="form-check-input" type="radio" name="unit" value="cc">
-                                  <label class="form-check-label" for="inlineRadio1">cc</label>
-                                </div>
-                            </div>
                         
                         <div><strong>販売店</strong></div>
                         <div class="form-margin">

@@ -38,6 +38,11 @@ class GenruController extends Controller
         return redirect()->route('genrus.list', ['id' => $genru->id]);
     }
     
+    public function delete_c(Request $request){
+      $genru = Genru::find($request->id);
+      return view('genru-del', ['genru' => $genru]);
+    }
+    
      public function delete(Request $request){
         $genru = Genru::find($request->id);
         $genru->delete();
