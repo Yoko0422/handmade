@@ -26,10 +26,12 @@
                         <div class="form-margin">
                             <select name="genru" value="{{ $part->genru->name }}">
                                     @foreach($genrus as $genru)
-                                        @if($genru->id == $part->genru_id)
-                                            <option value="{{$genru->name}}" selected>{{$genru->name}}</option>
-                                        @else
-                                            <option value="{{$genru->name}}">{{$genru->name}}</option>
+                                        @if($genru->user_id === $login_user_id)
+                                            @if($genru->id == $part->genru_id)
+                                                <option value="{{$genru->name}}" selected>{{$genru->name}}</option>
+                                            @else
+                                                <option value="{{$genru->name}}">{{$genru->name}}</option>
+                                            @endif
                                         @endif
                                     @endforeach
                             </select>
