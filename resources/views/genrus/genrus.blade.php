@@ -17,21 +17,17 @@
                         <td width=50% class="align-baseline">
                             <table class="table table-sm table-hover">
                                 @foreach ($genrus as $genru)
-                                @if($genru->user_id === $login_user_id)
-                                    <tr>
-                                        <td class="align-top">
-                                        {{$genru->name}}
-                                    </td>
-                                    <td>
-                                        @if($genru->name == '未分類')
-                    
-                                        @else
-                                        <a href="{{ action('GenruController@update', ['id' => $genru->id]) }}" class="badge badge-info" target="genruedit">編集</a>
-                                        <a href="{{ action('GenruController@delete_c', ['id' => $genru->id]) }}" class="badge badge-info" target="genruedit">削除</a>
-                                        @endif
-                                    </td>
-                                    </tr>
-                                @endif
+                                    @if($genru->user_id === $login_user_id)
+                                        <tr>
+                                            <td class="align-top">
+                                            {{$genru->name}}
+                                        </td>
+                                        <td>
+                                            <a href="{{ action('GenruController@update', ['id' => $genru->id]) }}" class="badge badge-info" target="genruedit">編集</a>
+                                            <a href="{{ action('GenruController@delete_c', ['id' => $genru->id]) }}" class="badge badge-info" target="genruedit">削除</a>
+                                        </td>
+                                        </tr>
+                                    @endif
                                 @endforeach
                             </table>
                         </td>

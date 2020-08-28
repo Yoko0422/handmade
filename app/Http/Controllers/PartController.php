@@ -22,10 +22,18 @@ class PartController extends Controller
     //パーツ一覧ページ
     public function parts(Request $request)
     {
-        $parts = Part::all();
-        $parts = Part::paginate(20);
+        
         $stock = Stock::all();
         
+        //ソート
+        $sort = $request->sort;
+        if (is_null($sort)) {
+         $sort = 'id';
+        }
+        $parts = Part::orderBy($sort, 'asc')->simplePaginate(20);
+        
+        
+        //自分が登録したパーツだけ表示するようにする
         $user = \Auth::user();
         if($user){
             $login_user_id = $user->id;
@@ -33,7 +41,7 @@ class PartController extends Controller
             $login_user_id = "";
         }
              
-        return view('parts', ['parts' => $parts, 'login_user_id' => $login_user_id]);
+        return view('parts/parts', ['parts' => $parts, 'sort' => $sort, 'login_user_id' => $login_user_id]);
     }
     
     //パーツ情報登録ページ
@@ -51,7 +59,7 @@ class PartController extends Controller
         $array_genru = Genru::all()->pluck('name', 'id');
         
         $genrus = Genru::all();
-        return view('part-new', ['part' => $part, 'login_user_id' => $login_user_id, 'array_genru' => $array_genru, 'genrus' => $genrus]);
+        return view('parts/part-new', ['part' => $part, 'login_user_id' => $login_user_id, 'array_genru' => $array_genru, 'genrus' => $genrus]);
     }
     
     
@@ -118,7 +126,7 @@ class PartController extends Controller
             $login_user_id = "";
         }
         
-      return view('part-edit', ['part' => $part, 'genrus' => $genrus, 'login_user_id' => $login_user_id]);
+      return view('parts/part-edit', ['part' => $part, 'genrus' => $genrus, 'login_user_id' => $login_user_id]);
     }
     
     
@@ -152,7 +160,7 @@ class PartController extends Controller
         $part->name = request('name');
         $part->price = request('price');
         $part->value = request('value');
-        $part->bit = $part->price / $part->value;
+        $part->bit = ceil($part->price / $part->value);
         $part->unit = request('unit');
         $part->shop = request('shop');
         $part->other = request('other');

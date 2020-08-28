@@ -20,12 +20,12 @@ class GenruController extends Controller
             $login_user_id = "";
         }
              
-        return view('genrus', ['genrus' => $genrus, 'login_user_id' => $login_user_id]);
+        return view('genrus/genrus', ['genrus' => $genrus, 'login_user_id' => $login_user_id]);
     }
   
    public function edit(Request $request){
       $genru = Genru::find($request->id);
-      return view('genru-edit', ['genru' => $genru]);
+      return view('genrus/genru-edit', ['genru' => $genru]);
     }
     
     public function update(Request $request)
@@ -40,7 +40,7 @@ class GenruController extends Controller
     
     public function delete_c(Request $request){
       $genru = Genru::find($request->id);
-      return view('genru-del', ['genru' => $genru]);
+      return view('genrus/genru-del', ['genru' => $genru]);
     }
     
      public function delete(Request $request){
@@ -50,7 +50,7 @@ class GenruController extends Controller
         $part->delete();
         $spend = Spend::where('genru_id','=',  $request->id);
         $spend->delete();
-        return redirect('genrus');
+        return redirect('genrus/genrus');
         }
     
     

@@ -95,7 +95,7 @@
                             </div>
                             
                     
-                            <div>店名</div>
+                            <div>販売店名</div>
                             <div class="form-margin">
                                <input type="text" class="form-control lg" name="shop" value="{{ old('shop') }}">
                             </div>

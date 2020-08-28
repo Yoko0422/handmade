@@ -1,9 +1,14 @@
 html {
-  color: #00533f;
   margin-top:10px;
   margin-bottom: 50px;
 }
 
+body {
+  color: #00533f;
+  background-image: url(../image/bk.jpg);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
 .form-margin {
   padding-bottom: 15px;
 }

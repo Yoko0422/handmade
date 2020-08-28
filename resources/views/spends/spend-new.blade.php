@@ -94,7 +94,7 @@ document.addEventListener("DOMContentLoaded", function(){
                            <input type="number" class="form-control sm" name="amount" value="{{ old('amount') }}">
                         </div>
                         
-                         <div><strong>購入価格</strong></div>
+                         <div>購入価格</div>
                         <div class="form-margin">
                           <input type="number" class="form-control sm" name="price" value="{{ old('price') }}">
                         </div>
@@ -104,7 +104,7 @@ document.addEventListener("DOMContentLoaded", function(){
                            <input type="text" class="form-control lg" name="shop" value="{{ old('shop') }}">
                         </div>
                         
-                         <div><strong>備考</strong></div>
+                         <div>備考</div>
                         <div class="form-margin">
                            <textarea class="form-control" name="other" rows="3" value="{{ old('other') }}"></textarea>
                         </div>

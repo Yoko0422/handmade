@@ -6,8 +6,16 @@
 
 <div class="container">
 <div class="main">
-        <h2>パーツ一覧</h2>
-        <p></p>
+        <div class="h2">パーツ一覧</div>
+        <select class="">
+         <option>--並び替え--</option>
+         <option href="/parts?sort=genru_id">分類名順</option>
+         <option href="/parts?sort=name">名前順</option>
+         <option href="/parts?sort=shop">販売店順</option>
+        </select>
+        
+        <p> </p>
+        
          {!! $parts->render() !!}
          
 <table class="table table-sm table-hover">
@@ -17,7 +25,7 @@
         <th scope="col">価格@内容量</th>
         <th scope="col">単価</th>
         <th scope="col">在庫数</th>
-        <th scope="col">購入店</th>
+        <th scope="col">販売店</th>
         <th scope="col">編集/削除</th>
     </tr>
     
@@ -42,7 +50,13 @@
                 
                 <td>￥{{ $part->price }} @ {{ $part->value }} {{ $part->unit }}</td>
                 
-                <td>￥{{ number_format($part->bit, 1) }} @ {{ $part->unit}}</td> <!--価格＠個数-->
+                <td>￥
+                    @if(gettype($part->bit) == "double")
+                        {{ number_format($part->bit, 1) }} 
+                    @else
+                       {{ $part->bit }}
+                    @endif
+                    @ {{ $part->unit}}</td> <!--価格＠個数-->
                 
                 <td><!--在庫数-->
                 @if(isset($part->stock))

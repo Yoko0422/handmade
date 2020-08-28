@@ -25,7 +25,7 @@ class SpendController extends Controller
             $login_user_id = "";
         }
         
-        return view('spends', ['spends' => $spends, 'login_user_id' => $login_user_id]);
+        return view('spends/spends', ['spends' => $spends, 'login_user_id' => $login_user_id]);
     }
     
     //パーツ使用履歴フォーム画面
@@ -46,7 +46,7 @@ class SpendController extends Controller
             $login_user_id = "";
         }
         
-        return view('spend-new', ['spend' => $spend, 'parts' => $parts, 'array_genrus' => $array_genrus, 'login_user_id' => $login_user_id]);
+        return view('spends/spend-new', ['spend' => $spend, 'parts' => $parts, 'array_genrus' => $array_genrus, 'login_user_id' => $login_user_id]);
     }
     
     //パーツ使用履歴フォーム・データ記録
@@ -91,11 +91,6 @@ class SpendController extends Controller
         $stock->update();
         return redirect()->route('spends.list');
     } 
-    
-    public function edit(Request $request){
-      $part = Spend::find($request->id);
-      return view('part-edit', ['part' => $part]);
-    }
     
     
      public function delete(Request $request)
